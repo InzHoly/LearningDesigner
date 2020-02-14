@@ -34,12 +34,15 @@
         f.setObbiettivo("Apprendimento del decadentismo");
         f.setTag("Italiano");
 
-        
+
 
         //Mod1.Text= d.getNome();
         lez1.Text = "Introduzione";
 
+        PROVA.Text = Request.QueryString["lezione"];
 
+       
+        
 
     }
 
@@ -62,19 +65,41 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 <style>
+
+
+
+
 ul {
   list-style-type: none;
   margin: auto;
   padding: 0;
+  overflow: hidden;
+  background-color: #333;
   display:inline-block;
   left:50%;
-  
 }
 
 li {
   display: inline;
   padding: 6px;
-  border:solid;
+  border-right: 1px solid #bbb;
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #4CAF50;
+}
+
+.active {
+  background-color: #4CAF50;
 }
     </style>
 </head>
@@ -109,10 +134,11 @@ function drawChart() {
 }
 </script>
 
-    <div id="piechart" style="float:right;"></div>
+    <div id="piechart" style="float:right;" class="chart"></div>
 
     <ext:ResourceManager runat="server" />
-    <h2>Introduzione ai Database</h2>
+    <div class="header">Introduzione ai Database</div>
+    <div class="details">
     <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" PageX="100" PageY="500">  </ext:Label></h3>
     
     <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" PageX="100" PageY="500">  </ext:Label></h3>
@@ -121,7 +147,8 @@ function drawChart() {
     
     <h3>&emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label2" ></ext:Label>
     </h3>
-    
+    </div>
+
     <hr />
    
     <br />
@@ -133,14 +160,26 @@ function drawChart() {
     <div id="menu-nav" class="menu" style="display: flex; justify-content: center;">
     <div id="navigation-bar">
     <ul>
-      <li style="float: left;"><a href="#"><i class="fa fa-plus"></i><span><ext:Label runat="server" ID="lez1"></ext:Label></span></a></li>
-      <li style="float: left;"><a href="#"><i class="fa fa-handshake"></i><span>Services</span></a></li>
-      <li style="float: left;"><a href="#"><i class="fa fa-user"></i><span>About</span></a></li>
-      <li style="float: left;"><a href="#"><i class="fa fa-book"></i><span>Contact</span></a></li>
-	  <li style="float: left;"><a href="#"><i class="fa fa-rss"></i> <span>Blog</span></a></li>
+      <li style="float: left;"><a href="Elenco_moduli.aspx?lezione=Introduzione"><span><ext:Label runat="server" ID="lez1"></ext:Label></span></a></li>
+      <li style="float: left;"><a href="#"><span>Services</span></a></li>
+      <li style="float: left;"><a href="#"><span>About</span></a></li>
+      <li style="float: left;"><a href="#"><span>Contact</span></a></li>
+	  <li style="float: left;"><a href="#"> <span>Blog</span></a></li>
+      <li style="float: left;"><a href="#"> <i class="fa fa-plus"></i><span></span></a></li>
     </ul>
      </div>    
         </div>
 
+    <ext:Label runat="server" ID="PROVA"> </ext:Label>
+    <div class="cmb"> Modalità 
+    <ext:ComboBox runat="server" ID="cmb">
+    <Items>
+            <ext:ListItem Text="In classe" Value="CL" />
+            <ext:ListItem Text="Uscita Didattica" Value="UD" />
+            <ext:ListItem Text="Laboratorio" Value="LAB" />
+    </Items>            
+    </ext:ComboBox>
+
+    </div>
 </body>
 </html>
