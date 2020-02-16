@@ -6,7 +6,7 @@
 
 
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs p)
     {
         Modulo d = new Modulo();
         d.setNome("Database");
@@ -34,7 +34,53 @@
         f.setObbiettivo("Apprendimento del decadentismo");
         f.setTag("Italiano");
 
+         Modulo s = new Modulo();
+        s.setNome("Seconda guerra mondiale");
+        s.setAnnoScolastico("2019/2020");
+        s.setClasse("8SC");
+        s.setCompetenze("conoscere la storia, sapere perchè amos è inferiore, hitler");
+        s.setCorso("Storia");
+        s.setDescrizione("Guerra lampo, resistenze, collaborazionisti, fine della guerra");
+        s.setDurata(7);
+        s.setIDAutore(4);
+        s.setNlezioni(7);
+        s.setObbiettivo("Apprendimento della seconda guerra mondiale");
+        s.setTag("Hitler");
 
+        Lezione a = new Lezione();
+        a.setNumero(1);
+        a.setTotore(3);
+        a.setData(new DateTime());
+
+        Lezione b = new Lezione();
+        b.setNumero(1);
+        b.setTotore(3);
+        b.setData(new DateTime());
+
+        Lezione c = new Lezione();
+        c.setNumero(1);
+        c.setTotore(3);
+        c.setData(new DateTime());
+
+        Lezione e = new Lezione();
+        e.setNumero(1);
+        e.setTotore(3);
+        e.setData(new DateTime());
+
+        Lezione g = new Lezione();
+        g.setNumero(1);
+        g.setTotore(3);
+        g.setData(new DateTime());
+
+        Attivita i = new Attivita();
+        i.setDescrizione("cartina europa nel 1942");
+        i.setDurata(3);
+        i.setTipo(2);
+
+        Attivita l = new Attivita();
+        l.setDescrizione("hitler che gesticola");
+        l.setDurata(4);
+        l.setTipo(1);
 
         //Mod1.Text= d.getNome();
         lez1.Text = "Introduzione";
