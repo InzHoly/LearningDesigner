@@ -7,3 +7,5 @@ WebSite1/App_Data/LNdb.mdf
 UpgradeLog.htm
 .vs/WebSite1/v16/Server/sqlite3/storage.ide-wal
 .vs/WebSite1/v16/Server/sqlite3/storage.ide-shm
+WebSite1/App_Data/LNdb_log.ldf
+WebSite1/App_Data/lndb.mdf
