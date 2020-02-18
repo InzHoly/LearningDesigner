@@ -4,11 +4,11 @@
 
 <script runat="server">
 
-
-
+    Modulo d;
+    Modulo s;
     protected void Page_Load(object sender, EventArgs p)
     {
-        Modulo d = new Modulo();
+        d = new Modulo();
         d.setNome("Database");
         d.setAnnoScolastico("2019/2020");
         d.setClasse("5IA");
@@ -34,7 +34,7 @@
         f.setObbiettivo("Apprendimento del decadentismo");
         f.setTag("Italiano");
 
-        Modulo s = new Modulo();
+        s = new Modulo();
         s.setNome("Seconda guerra mondiale");
         s.setAnnoScolastico("2019/2020");
         s.setClasse("8SC");
@@ -114,55 +114,7 @@
 
     protected void bottone(object sender, DirectEventArgs e)
     {
-        Modulo s = new Modulo();
-        s.setNome("Seconda guerra mondiale");
-        s.setAnnoScolastico("2019/2020");
-        s.setClasse("8SC");
-        s.setCompetenze("conoscere la storia, sapere perchè amos è inferiore, hitler");
-        s.setCorso("Storia");
-        s.setDescrizione("Guerra lampo, resistenze, collaborazionisti, fine della guerra");
-        s.setDurata(7);
-        s.setIDAutore(4);
-        s.setNlezioni(7);
-        s.setObbiettivo("Apprendimento della seconda guerra mondiale");
-        s.setTag("Hitler");
-
-        Lezione a = new Lezione();
-        a.setNome("1939, l'inizio");
-        a.setDescrizione("Dopo che la Germania invase la Polonia, Francia e Gran Bretagna dichiararono guerra a Hitler");
-        a.setTotore(3);
-        a.setModalita(0);
-
-        Lezione b = new Lezione();
-        b.setNome("1940, La caduta della Francia");
-        b.setDescrizione("Passando per il belgio le truppe naziste dilagano in francia e invadono Parigi, gli alleati sono costretti a ritirarsi a Dunquerque");
-        b.setTotore(3);
-        b.setModalita(1);
-
-        Lezione c = new Lezione();
-        c.setNome("1941, operazione Barbarossa");
-        c.setDescrizione("Dopo che la Luftwaffe non riuscì a distruggere la RAF, Hitler decide di cominciare l'invasione dell'unione sovietica per conquistare lo spazio vitale a est");
-        c.setTotore(3);
-        c.setModalita(2);
-
-        Lezione z = new Lezione();
-        z.setNome("1942, Battaglia isole Midway");
-        z.setDescrizione("Nella decisiva battaglia delle isole Midway gli americani riuscirono a ribaltare le sorti della battaglia nel pacifico contro i giapponesi");
-        z.setTotore(3);
-        z.setModalita(0);
-
-        Lezione g = new Lezione();
-        g.setNome("1943, Sbarco in Sicilia");
-        g.setDescrizione("Dopo aver ottenuto il dominio del Mediterraneo, gli alleati sbarcano in Sicilia dove vengono accolti dalla popolazione come dei salvatori");
-        g.setTotore(3);
-        g.setModalita(1);
-
-
-        s.addLezione(a);
-        s.addLezione(b);
-        s.addLezione(c);
-        s.addLezione(z);
-        s.addLezione(g);
+        
 
         String txt = "";
         String nom = "n";
@@ -179,6 +131,7 @@
 
         Lezione lez = s.getLezione(index);
         descLez.Text = lez.getDescrizione();
+        totdurata.Text ="Durata totale: "+ lez.getTotore() + " ore";
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -330,9 +283,10 @@ function drawChart() {
             <ext:ListItem Text="Laboratorio" Value="LAB" />
     </Items>            
     </ext:ComboBox>
-
-    <ext:Label runat="server" ID="descLez"> </ext:Label>
-
     </div>
+    <ext:Label runat="server" ID="descLez"> </ext:Label>
+    <br />
+    <ext:Label runat="server" ID="totdurata"></ext:Label>
+    
 </body>
 </html>
