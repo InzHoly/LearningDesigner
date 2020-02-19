@@ -9,9 +9,11 @@
     color: red;
 }
 
+h2{
+    text-align:center;
+}
+
 .details {
-    z-index: 2;
-    position:relative;
 }
 
 #piechart {
@@ -21,12 +23,9 @@
 }
 
 .chart {
-    z-index: 1;
-    position:relative;
 }
 
 .menu {
-    z-index: 2;
 }
 
 .lezione {
@@ -53,7 +52,7 @@
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    /*padding: 14px 16px;*/
     text-decoration: none;
 
 }
@@ -97,7 +96,6 @@
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    position: relative;
     
 }
 

@@ -145,7 +145,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <h1 class="header">Introduzione ai Database</h1>
+    
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <link href="Stile.css" rel="stylesheet" type="text/css" />
@@ -154,7 +154,7 @@
     
 
 <body>
-
+    <h1 class="header">Introduzione ai Database</h1>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
     // Load google charts
@@ -198,35 +198,35 @@
    
     <br />
 
-    <center><h2>Lezioni</h2></center>
+    <h2>Lezioni</h2>
 
     <br />
     
     <div id="menu-nav" class="menu" style="display: flex; justify-content: center;">
         <div id="navigation-bar">
             <ul>
-                <li style="float: left;"><a href="#" class="hvr-ripple-out">
-                    <span><ext:Label runat="server" ID="lez1">
+                <li style="float: left;"><a href="#">
+                    <span ><ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n1" Value="0" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-                <li style="float: left;"><a href="#" class="hvr-ripple-out">
-                    <span><ext:Label runat="server" ID="lez2">
+                <li style="float: left;"><a href="#">
+                    <span><ext:Label runat="server" ID="lez2" Cls="hvr-ripple-out" Height="30px" Width="180px">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n2" Value="1" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-                <li style="float: left;"><a href="#" class="hvr-ripple-out">
-                    <span><ext:Label runat="server" ID="lez3">
+                <li style="float: left;"><a href="#">
+                    <span><ext:Label runat="server" ID="lez3" Cls="hvr-ripple-out" Height="30px" Width="180px">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="2" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-                <li style="float: left;"><a href="#" class="hvr-ripple-out">
-                    <span><ext:Label runat="server" ID="lez4">
+                <li style="float: left;"><a href="#">
+                    <span><ext:Label runat="server" ID="lez4" Cls="hvr-ripple-out" Height="30px" Width="180px">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="3" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-	            <li style="float: left;"><a href="#" class="hvr-ripple-out">
-                    <span><ext:Label runat="server" ID="lez5">
+	            <li style="float: left;"><a href="#">
+                    <span><ext:Label runat="server" ID="lez5" Cls="hvr-ripple-out" Height="30px" Width="180px">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n4" Value="4" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
