@@ -172,7 +172,7 @@
         ]);
 
     // Optional; add a title and set the width and height of the chart
-    var options = {'title':'Distribuzione delle attività', 'width':300, 'height':300};
+        var options = { 'title': 'Distribuzione delle attività', legend: { position: 'top' }, is3D: true, backgroundColor: 'transparent'};
 
   // Display the chart inside the <div> element with id="piechart"
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -185,9 +185,9 @@
     <ext:ResourceManager runat="server" />
     
     <div class="details">
-        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" PageX="100" PageY="500">  </ext:Label></h3>
+        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" >  </ext:Label></h3>
     
-        <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" PageX="100" PageY="500">  </ext:Label></h3>
+        <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" >  </ext:Label></h3>
     
         <h3>&emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Durata" ></ext:Label></h3>
     
@@ -196,6 +196,10 @@
 
     <hr /> <!-- riga orizzontale -->
    
+    <br />
+
+    <center><h2>Lezioni</h2></center>
+
     <br />
     
     <div id="menu-nav" class="menu" style="display: flex; justify-content: center;">

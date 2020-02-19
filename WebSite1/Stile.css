@@ -10,12 +10,23 @@
 }
 
 .details {
+    z-index: 2;
+    position:relative;
+}
+
+#piechart {
+    width: 550px;
+    height: 306px;
+    
 }
 
 .chart {
+    z-index: 1;
+    position:relative;
 }
 
 .menu {
+    z-index: 2;
 }
 
 .lezione {
