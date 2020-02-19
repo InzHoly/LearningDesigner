@@ -201,32 +201,32 @@
     <div id="menu-nav" class="menu" style="display: flex; justify-content: center;">
         <div id="navigation-bar">
             <ul>
-                <li style="float: left;"><a href="#">
+                <li style="float: left;"><a href="#" class="hvr-ripple-out">
                     <span><ext:Label runat="server" ID="lez1">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n1" Value="0" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-                <li style="float: left;"><a href="#">
+                <li style="float: left;"><a href="#" class="hvr-ripple-out">
                     <span><ext:Label runat="server" ID="lez2">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n2" Value="1" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-                <li style="float: left;"><a href="#">
+                <li style="float: left;"><a href="#" class="hvr-ripple-out">
                     <span><ext:Label runat="server" ID="lez3">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="2" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-                <li style="float: left;"><a href="#">
+                <li style="float: left;"><a href="#" class="hvr-ripple-out">
                     <span><ext:Label runat="server" ID="lez4">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="3" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-	            <li style="float: left;"><a href="#">
+	            <li style="float: left;"><a href="#" class="hvr-ripple-out">
                     <span><ext:Label runat="server" ID="lez5">
                     <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n4" Value="4" Mode="Value" /></ExtraParams></Tap>
                     </DirectEvents></ext:Label></span></a>
                 </li>
-                <li style="float: left;"><a href="#"> <i class="fa fa-plus"></i><span></span></a></li>
+                <li style="float: left;"><a href="#" class="hvr-ripple-out"> <i class="fa fa-plus"></i><span></span></a></li>
             </ul>
         </div>    
     </div>
