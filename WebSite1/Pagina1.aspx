@@ -57,6 +57,7 @@
 <html>
 <head runat="server">
     <title>Using Actions - Ext.NET Examples</title>
+    <link href="stilefigo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <ext:ResourceManager runat="server" />
