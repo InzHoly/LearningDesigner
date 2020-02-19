@@ -192,14 +192,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <h1 class="header">Introduzione ai Database</h1>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <link href="stilefigo.css" rel="stylesheet" type="text/css" />
-<style>
-
-
-
-
+<!--<style>
 ul {
   list-style-type: none;
   margin: auto;
@@ -232,7 +229,7 @@ li a:hover:not(.active) {
 .active {
   background-color: #4CAF50;
 }
-    </style>
+    </style>-->
 </head>
 
     
@@ -268,7 +265,7 @@ function drawChart() {
     <div id="piechart" style="float:right;" class="chart"></div>
 
     <ext:ResourceManager runat="server" />
-    <div class="header">Introduzione ai Database</div>
+    
     <div class="details">
     <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" PageX="100" PageY="500">  </ext:Label></h3>
     

@@ -1,3 +1,55 @@
-﻿body
-{
+﻿* {
+    font: 20px arial;
+}
+
+.header {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.details {
+}
+
+.chart {
+}
+
+.menu {
+}
+
+.lezione {
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    display: inline-block;
+    left: 50%;
+}
+
+.menu ul li {
+    display: inline;
+    padding: 6px;
+    border-right: 1px solid #bbb;
+    float: left;
+}
+
+.menu ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+
+.menu ul li a:hover:not(.active) {
+    background-color: #4CAF50;
+}
+
+.active {
+    background-color: #4CAF50;
 }
