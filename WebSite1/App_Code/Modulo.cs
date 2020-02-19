@@ -29,6 +29,7 @@ public class Modulo
         //Oggetto modulo composto da un'array di lezioni + ID autore +array di ID utenti con cui è condiviso + tag
         // TODO: aggiungere qui la logica del costruttore
         //
+        this.elenco = new List<Lezione>();
 
     }
 
@@ -49,6 +50,16 @@ public class Modulo
     }
 
     //getlista di attività
+
+    public void addLezione(Lezione l)
+    {
+        elenco.Add(l);
+    }
+
+    public Lezione getLezione(int i)
+    {
+        return elenco.ElementAt(i);
+    }
 
     public string getAnnoScolastico()
     {
