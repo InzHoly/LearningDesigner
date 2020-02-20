@@ -145,72 +145,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <link href="stilefigo.css" rel="stylesheet" type="text/css" />
-<style>
-
-
-
-
-ul {
-  list-style-type: none;
-  margin: auto;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  display:inline-block;
-  left:50%;
-}
-
-li {
-  display: inline;
-  padding: 6px;
-  border-right: 1px solid #bbb;
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #4CAF50;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-    </style>
+    <link href="Stile.css" rel="stylesheet" type="text/css" />
 </head>
 
     
 
 <body>
-
+    <h1 class="header">Introduzione ai Database</h1>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <script type="text/javascript">
-// Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-// Draw the chart and set the chart values
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Activity', 'Hours'],
-  ['Listening', 8],
-  ['Reading', 6],
-  ['Research', 3],
-  ['Teamwork', 5],
-]);
+    // Draw the chart and set the chart values
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Activity', 'Hours'],
+            ['Listening', 8],
+            ['Reading', 6],
+            ['Research', 3],
+            ['Teamwork', 5],
+        ]);
 
-  // Optional; add a title and set the width and height of the chart
-  var options = {'title':'Distribuzione delle attività', 'width':300, 'height':300};
+    // Optional; add a title and set the width and height of the chart
+        var options = { 'title': 'Distribuzione delle attività', legend: { position: 'top' }, is3D: true, backgroundColor: 'transparent'};
 
   // Display the chart inside the <div> element with id="piechart"
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -221,68 +183,67 @@ function drawChart() {
     <div id="piechart" style="float:right;" class="chart"></div>
 
     <ext:ResourceManager runat="server" />
-    <div class="header">Introduzione ai Database</div>
+    
     <div class="details">
-    <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" PageX="100" PageY="500">  </ext:Label></h3>
+        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" >  </ext:Label></h3>
     
-    <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" PageX="100" PageY="500">  </ext:Label></h3>
+        <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" >  </ext:Label></h3>
     
-    <h3>&emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Durata" ></ext:Label></h3>
+        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Durata" ></ext:Label></h3>
     
-    <h3>&emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label2" ></ext:Label>
-    </h3>
+        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label2" ></ext:Label></h3>
     </div>
 
-    <hr />
+    <hr /> <!-- riga orizzontale -->
    
     <br />
 
-    
-    
+    <h2>Lezioni</h2>
 
+    <br />
     
     <div id="menu-nav" class="menu" style="display: flex; justify-content: center;">
-    <div id="navigation-bar">
-    <ul>
-      <li style="float: left;"><a href="#">
-          <span><ext:Label runat="server" ID="lez1">
-              <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n1" Value="0" Mode="Value" /></ExtraParams></Tap>
-              </DirectEvents></ext:Label></span></a>
-      </li>
-      <li style="float: left;"><a href="#">
-          <span><ext:Label runat="server" ID="lez2">
-              <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n2" Value="1" Mode="Value" /></ExtraParams></Tap>
-              </DirectEvents></ext:Label></span></a>
-      </li>
-      <li style="float: left;"><a href="#">
-          <span><ext:Label runat="server" ID="lez3">
-              <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="2" Mode="Value" /></ExtraParams></Tap>
-              </DirectEvents></ext:Label></span></a>
-      </li>
-      <li style="float: left;"><a href="#">
-          <span><ext:Label runat="server" ID="lez4">
-              <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="3" Mode="Value" /></ExtraParams></Tap>
-              </DirectEvents></ext:Label></span></a>
-      </li>
-	  <li style="float: left;"><a href="#">
-          <span><ext:Label runat="server" ID="lez5">
-              <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n4" Value="4" Mode="Value" /></ExtraParams></Tap>
-              </DirectEvents></ext:Label></span></a>
-      </li>
-      <li style="float: left;"><a href="#"> <i class="fa fa-plus"></i><span></span></a></li>
-    </ul>
-     </div>    
-        </div>
+        <div id="navigation-bar">
+            <ul>
+                <li style="float: left;"><a href="#">
+                    <span ><ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
+                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n1" Value="0" Mode="Value" /></ExtraParams></Tap>
+                    </DirectEvents></ext:Label></span></a>
+                </li>
+                <li style="float: left;"><a href="#">
+                    <span><ext:Label runat="server" ID="lez2" Cls="hvr-ripple-out" Height="30px" Width="180px">
+                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n2" Value="1" Mode="Value" /></ExtraParams></Tap>
+                    </DirectEvents></ext:Label></span></a>
+                </li>
+                <li style="float: left;"><a href="#">
+                    <span><ext:Label runat="server" ID="lez3" Cls="hvr-ripple-out" Height="30px" Width="180px">
+                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="2" Mode="Value" /></ExtraParams></Tap>
+                    </DirectEvents></ext:Label></span></a>
+                </li>
+                <li style="float: left;"><a href="#">
+                    <span><ext:Label runat="server" ID="lez4" Cls="hvr-ripple-out" Height="30px" Width="180px">
+                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="3" Mode="Value" /></ExtraParams></Tap>
+                    </DirectEvents></ext:Label></span></a>
+                </li>
+	            <li style="float: left;"><a href="#">
+                    <span><ext:Label runat="server" ID="lez5" Cls="hvr-ripple-out" Height="30px" Width="180px">
+                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n4" Value="4" Mode="Value" /></ExtraParams></Tap>
+                    </DirectEvents></ext:Label></span></a>
+                </li>
+                <li style="float: left;"><a href="#" class="hvr-ripple-out"> <i class="fa fa-plus"></i><span></span></a></li>
+            </ul>
+        </div>    
+    </div>
 
     <ext:Label runat="server" ID="PROVA"> </ext:Label>
     <div class="cmb"> Modalità 
-    <ext:ComboBox runat="server" ID="cmb">
-    <Items>
-            <ext:ListItem Text="In classe" Value="CL" />
-            <ext:ListItem Text="Uscita Didattica" Value="UD" />
-            <ext:ListItem Text="Laboratorio" Value="LAB" />
-    </Items>            
-    </ext:ComboBox>
+        <ext:ComboBox runat="server" ID="cmb">
+            <Items>
+                    <ext:ListItem Text="In classe" Value="CL" />
+                    <ext:ListItem Text="Uscita Didattica" Value="UD" />
+                    <ext:ListItem Text="Laboratorio" Value="LAB" />
+            </Items>            
+        </ext:ComboBox>
     </div>
     <ext:Label runat="server" ID="descLez"> </ext:Label>
     <br />
