@@ -154,7 +154,7 @@
     
 
 <body>
-    <h1 class="header">Introduzione ai Database</h1>
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
     // Load google charts
@@ -172,7 +172,7 @@
         ]);
 
     // Optional; add a title and set the width and height of the chart
-        var options = { 'title': 'Distribuzione delle attività', legend: { position: 'top' }, is3D: true, backgroundColor: 'transparent'};
+        var options = { legend: { position: 'top' }, is3D: true, backgroundColor: 'transparent'};
 
   // Display the chart inside the <div> element with id="piechart"
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -180,29 +180,34 @@
 }
 </script>
 
-    <div id="piechart" style="float:right;" class="chart"></div>
+    
 
     <ext:ResourceManager runat="server" />
     
-    <div class="details">
-        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" >  </ext:Label></h3>
+        <h1 class="header">Introduzione ai Database</h1>
+        <div class="details">
+            <div class="text">
+                <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" >  </ext:Label></h3>
     
-        <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" >  </ext:Label></h3>
+                <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" >  </ext:Label></h3>
     
-        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Durata" ></ext:Label></h3>
+                <h3>&emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Durata" ></ext:Label></h3>
     
-        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label2" ></ext:Label></h3>
-    </div>
+                <h3>&emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label2" ></ext:Label></h3>
+            </div>
+            <div id="piechart" style="float:right;" class="chart"></div>
+        </div>
 
+    <br />
     <hr /> <!-- riga orizzontale -->
-   
+   <div class="lezione">
     <br />
 
     <h2>Lezioni</h2>
 
     <br />
     
-    <div id="menu-nav" class="menu" style="display: flex; justify-content: center;">
+    <div id="menu-nav" class="menu">
         <div id="navigation-bar">
             <ul>
                 <li style="float: left;"><a href="#">
@@ -235,19 +240,21 @@
         </div>    
     </div>
 
-    <ext:Label runat="server" ID="PROVA"> </ext:Label>
-    <div class="cmb"> Modalità 
-        <ext:ComboBox runat="server" ID="cmb">
-            <Items>
-                    <ext:ListItem Text="In classe" Value="CL" />
-                    <ext:ListItem Text="Uscita Didattica" Value="UD" />
-                    <ext:ListItem Text="Laboratorio" Value="LAB" />
-            </Items>            
-        </ext:ComboBox>
+    
+    
+        <div class="cmb"> Modalità 
+            <ext:ComboBox runat="server" ID="cmb">
+                <Items>
+                        <ext:ListItem Text="In classe" Value="CL" />
+                        <ext:ListItem Text="Uscita Didattica" Value="UD" />
+                        <ext:ListItem Text="Laboratorio" Value="LAB" />
+                </Items>            
+            </ext:ComboBox>
+        </div>
+        <ext:Label runat="server" ID="descLez"> </ext:Label>
+        <br />
+        <ext:Label runat="server" ID="totdurata"></ext:Label>
     </div>
-    <ext:Label runat="server" ID="descLez"> </ext:Label>
-    <br />
-    <ext:Label runat="server" ID="totdurata"></ext:Label>
     
 </body>
 </html>
