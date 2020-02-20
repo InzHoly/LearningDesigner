@@ -10,24 +10,30 @@
     color: red;
 }
 
+.text1 {
+    left: 13px;
+    line-height: 10px;
+    width: 30%;
+}
+
+.text2 {
+    left: 13px;
+    line-height: 10px;
+    width: 40%;
+}
+
+.longString {
+    line-height: 25px;
+}
+
 h2 {
     text-align: center;
-}
-
-h3 {
-    width:100%;
-}
-
-hr {
 }
 
 .details {
     display: flex;
     flex-direction: row;
     height: 230px;
-}
-
-.text {
 }
 
 #piechart {
@@ -44,9 +50,6 @@ hr {
 .menu {
     display: inline-block;
     justify-content: center;
-}
-
-.lezione {
 }
 
 .menu ul {

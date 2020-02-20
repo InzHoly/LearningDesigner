@@ -1,4 +1,4 @@
-﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Elenco_moduli.aspx.cs" Inherits="Elenco_moduli" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Elenco_moduli.aspx.cs" Inherits="Elenco_moduli" %>
 
 <!DOCTYPE html>
 
@@ -6,8 +6,7 @@
 
     Modulo d;
     Modulo s;
-    protected void Page_Load(object sender, EventArgs p)
-    {
+    protected void Page_Load(object sender, EventArgs p) {
         d = new Modulo();
         d.setNome("Database");
         d.setAnnoScolastico("2019/2020");
@@ -104,18 +103,13 @@
         lez4.Text = s.getLezione(3).getNome();
         lez5.Text = s.getLezione(4).getNome();
 
-
-
-
-
     }
-
+    
 
 
     protected void bottone(object sender, DirectEventArgs e)
     {
         
-
         String txt = "";
         String nom = "n";
         int i=1;
@@ -137,9 +131,6 @@
         //provaout.Text = Session["UserName"] as string;
     }
 
-
-
-
 </script>
 
 
@@ -150,8 +141,6 @@
     <title></title>
     <link href="Stile.css" rel="stylesheet" type="text/css" />
 </head>
-
-    
 
 <body>
     
@@ -180,20 +169,54 @@
 }
 </script>
 
-    
-
     <ext:ResourceManager runat="server" />
     
         <h1 class="header">Introduzione ai Database</h1>
         <div class="details">
-            <div class="text">
-                <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" >  </ext:Label></h3>
+            <div class="text1">
+                <table style="width:30%>
+                    <tr>
+                        <td>
+                            Nome :
+                        </td>
+                        <td>
+                            <ext:Label runat="server" Text="introduzione ai Database" ID="Mod1" ></ext:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Argomenti :
+                        </td>
+                        <td>
+                            <ext:Label runat="server"  Text="progettazione concettuale" ID="Label1" ></ext:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Durata :
+                        </td>
+                        <td>
+                            <ext:Label runat="server" Text="Durata: 4h" ID="Label2" ></ext:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Descrizione :
+                        </td>
+                        <td>
+                            <ext:Label runat="server" Text="Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label3" Cls="longString"></ext:Label>
+                        </td>
+                    </tr>
+               </table>
+            </div>
+            <div class="text2">
+                <p>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Label4" >  </ext:Label></p>
     
-                <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" >  </ext:Label></h3>
+                <p>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label5" >  </ext:Label></p>
     
-                <h3>&emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Durata" ></ext:Label></h3>
+                <p>&emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Label6" ></ext:Label></p>
     
-                <h3>&emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label2" ></ext:Label></h3>
+                <p>&emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label7" Cls="longString"></ext:Label></p>
             </div>
             <div id="piechart" style="float:right;" class="chart"></div>
         </div>
@@ -240,8 +263,6 @@
         </div>    
     </div>
 
-    
-    
         <div class="cmb"> Modalità 
             <ext:ComboBox runat="server" ID="cmb">
                 <Items>
@@ -255,6 +276,5 @@
         <br />
         <ext:Label runat="server" ID="totdurata"></ext:Label>
     </div>
-    
 </body>
 </html>
