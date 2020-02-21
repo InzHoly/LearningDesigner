@@ -25,9 +25,17 @@ public class Lezione
 
     public Lezione()
     {
-        //
-        // TODO: aggiungere qui la logica del costruttore
-        //
+        this.elenco = new List<Attivita>();
+    }
+
+    public void addAttivita(Attivita a)
+    {
+        elenco.Add(a);
+    }
+
+    public Attivita GetAttivita(int i)
+    {
+        return elenco.ElementAt(i);
     }
 
     public String getDescrizione()

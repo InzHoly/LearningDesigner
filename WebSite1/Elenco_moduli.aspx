@@ -6,6 +6,7 @@
 
     Modulo d;
     Modulo s;
+    Lezione att= new Lezione();
     protected void Page_Load(object sender, EventArgs p)
     {
         d = new Modulo();
@@ -85,18 +86,41 @@
         s.addLezione(g);
 
 
-        Attivita i = new Attivita();
-        i.setDescrizione("cartina europa nel 1942");
-        i.setDurata(3);
-        i.setTipo(2);
+        Attivita at1 = new Attivita();
+        at1.setDescrizione("cartina europa nel 1939");
+        at1.setDurata(3);
+        at1.setTipo(2);
 
-        Attivita l = new Attivita();
-        l.setDescrizione("hitler che gesticola");
-        l.setDurata(4);
-        l.setTipo(1);
+        Attivita at2 = new Attivita();
+        at2.setDescrizione("Ricerca sulle strategie di guerra tedesche");
+        at2.setDurata(5);
+        at2.setTipo(1);
 
+        Attivita at3 = new Attivita();
+        at3.setDescrizione("Discussione sulla non belligeranza di Mussolini");
+        at3.setDurata(4);
+        at3.setTipo(3);
+
+        Attivita at4 = new Attivita();
+        at4.setDescrizione("Lettura di un documento sulle umilianti condizioni di resa della Francia");
+        at4.setDurata(1);
+        at4.setTipo(4);
         //Mod1.Text= d.getNome();
+        a.addAttivita(at1);
+        a.addAttivita(at2);
+        a.addAttivita(at3);
+        a.addAttivita(at4);
 
+
+        att.setNome("1939, l'inizio");
+        att.setDescrizione("Dopo che la Germania invase la Polonia, Francia e Gran Bretagna dichiararono guerra a Hitler");
+        att.setTotore(3);
+        att.setModalita(0);
+
+        att.addAttivita(at1);
+        att.addAttivita(at2);
+        att.addAttivita(at3);
+        att.addAttivita(at4);
 
         lez1.Text = s.getLezione(0).getNome();
         lez2.Text = s.getLezione(1).getNome();
@@ -107,14 +131,13 @@
 
 
 
-
     }
 
 
 
     protected void bottone(object sender, DirectEventArgs e)
     {
-        
+
 
         String txt = "";
         String nom = "n";
@@ -132,13 +155,49 @@
         Lezione lez = s.getLezione(index);
         descLez.Text = lez.getDescrizione();
         totdurata.Text ="Durata totale: "+ lez.getTotore() + " ore";
+        switch (lez.getModalita())
+        {
+            case 0:cmb.SetValue("In classse");break;
+            case 1:cmb.SetValue("Uscita didattica");break;
+            case 2:cmb.SetValue("Laboratorio");break;
+        }
+        cmb.Hidden = false;
+        att = lez;
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
     }
 
 
+    protected void mostraAttivita(object sender, DirectEventArgs e)
+    {
+        String tipi="";
+        String txt = "";
+        String nom = "a";
+        int i=1;
+        do
+        {
+            if(e.ExtraParams.GetParameter(nom+i)!=null)
+                txt= e.ExtraParams.GetParameter(nom+i).Value;
+            i++;
+        } while (txt == "");
 
+        int index = int.Parse(txt);
+
+        Attivita atti = att.GetAttivita(index);
+        Descrizione.Text = atti.getDescrizione();
+        OreAttivita.Text = "Durata" + atti.getDurata() + " h";
+        switch (atti.getTipo())
+        {
+            case 0:tipi = "read, watch & listen"; break;
+            case 1:tipi = "collaborate"; break;
+            case 2:tipi = "discuss"; break;
+            case 3:tipi = "investigate"; break;
+            case 4:tipi = "practice"; break;
+            case 5:tipi = "produce"; break;
+        }
+        Tipo.Text = "Tipo: " + tipi;
+    }
 
 </script>
 
@@ -196,13 +255,13 @@
 
     <hr /> <!-- riga orizzontale -->
    
-    <br />
+   
 
     <h2>Lezioni</h2>
 
     <br />
     
-    <div id="menu-nav" class="menu" style="display: flex; justify-content: center;">
+    <div id="menu-nav" class="menu" style="display: inline-block; justify-content: center;">
         <div id="navigation-bar">
             <ul>
                 <li style="float: left;"><a href="#">
@@ -235,19 +294,90 @@
         </div>    
     </div>
 
-    <ext:Label runat="server" ID="PROVA"> </ext:Label>
-    <div class="cmb"> Modalità 
-        <ext:ComboBox runat="server" ID="cmb">
+    
+    <div class="cmb"> 
+       <ext:Label runat="server" Text="Modalità:"></ext:Label><ext:ComboBox runat="server"  ID="cmb" Editable="false"  Hidden="true">
             <Items>
-                    <ext:ListItem Text="In classe" Value="CL" />
-                    <ext:ListItem Text="Uscita Didattica" Value="UD" />
-                    <ext:ListItem Text="Laboratorio" Value="LAB" />
+                    <ext:ListItem Text="In classe" Value="In classe" />
+                    <ext:ListItem Text="Uscita Didattica" Value="Uscita Didattica" />
+                    <ext:ListItem Text="Laboratorio" Value="Laboratorio" />
             </Items>            
         </ext:ComboBox>
     </div>
     <ext:Label runat="server" ID="descLez"> </ext:Label>
     <br />
     <ext:Label runat="server" ID="totdurata"></ext:Label>
-    
+    <ext:Window runat="server"  Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="450" PageX="0" Draggable="false" Resizable="false">
+        <Bin>
+            <ext:InfoPanelQueue
+                runat="server"
+                Name="window"
+                Container="#{Infos}"
+                Sliding="false">
+                <Defaults>
+                    <ext:Parameter Name="header" Value="false" />
+                    <ext:Parameter Name="pinned" Value="true" />
+                    <ext:Parameter Name="cls" Value="solid" />
+                    <ext:Parameter Name="layout" Value="hbox" />
+                    <ext:Parameter Name="style" Value="position:relative;" />
+                </Defaults>
+                
+            </ext:InfoPanelQueue>
+        </Bin>
+        <LayoutConfig>
+            <ext:HBoxLayoutConfig Align="Stretch" />
+        </LayoutConfig>
+        <Items>
+            
+            <ext:MenuPanel runat="server" Width ="150" Height="200"  Region="West">
+                <Menu runat="server" ID="men">
+                    <Items>
+                        <ext:MenuItem
+                            runat="server"
+                            Text="Attività 1">
+                            <DirectEvents>
+                                <Click OnEvent="mostraAttivita" > <ExtraParams><ext:Parameter Name="a1" Value="0" Mode="Value" /></ExtraParams></Click>
+                            </DirectEvents>
+                            </ext:MenuItem>
+                        <ext:MenuItem
+                            runat="server"
+                            Text="Attività 2">
+                            <DirectEvents>
+                                <Click OnEvent="mostraAttivita" > <ExtraParams><ext:Parameter Name="a2" Value="1" Mode="Value" /></ExtraParams></Click>
+                            </DirectEvents>
+                            </ext:MenuItem>
+                        <ext:MenuItem
+                            runat="server"
+                            Text="Attività 3" >
+                            <DirectEvents>
+                                <Click OnEvent="mostraAttivita" > <ExtraParams><ext:Parameter Name="a3" Value="2" Mode="Value" /></ExtraParams></Click>
+                            </DirectEvents>
+                            </ext:MenuItem>
+                        <ext:MenuItem
+                            runat="server"
+                            Text="Attività 4" >
+                            <DirectEvents>
+                                <Click OnEvent="mostraAttivita" > <ExtraParams><ext:Parameter Name="a4" Value="3" Mode="Value" /></ExtraParams></Click>
+                            </DirectEvents>
+                            </ext:MenuItem>
+                    </Items>
+                </Menu>
+            </ext:MenuPanel>
+            <ext:Container runat="server" Region="East" Flex="1" StyleHtmlCls="display:flex; flex-direction: row">
+                <LayoutConfig>
+                    <ext:VBoxLayoutConfig Align="Stretch" />
+                </LayoutConfig>
+                <Defaults>
+                    <ext:Parameter Name="margin" Value="0" Mode="Raw" />
+                </Defaults>
+                <Items>
+                <ext:TextArea ID="Descrizione" runat="server" Height="100" Width="200" Editable="false"></ext:TextArea>
+                <ext:Label runat="server" ID="OreAttivita" ></ext:Label>
+                <ext:Label runat="server" ID="Tipo" ></ext:Label>
+                </Items>
+            </ext:Container>
+            
+        </Items>
+    </ext:Window>
 </body>
 </html>
