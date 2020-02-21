@@ -173,30 +173,31 @@
     <h1 class="header">Introduzione ai Database</h1>
     <div class="details">
         <div class="text1">
-            <table style="width: 30%">
+            <table>
                 <tr>
-                    <td>Nome :
+                    <td class="leftColumn">Nome :
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="introduzione ai Database" ID="Mod1"></ext:Label>
+                        <ext:Label runat="server" Text="Introduzione ai Database" ID="Mod1"></ext:Label>
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td class="leftColumn">Argomenti :
+                    </td>
+                    <td>
+                        <ext:Label runat="server" Text="Progettazione concettuale" ID="Label1"></ext:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td>Argomenti :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="progettazione concettuale" ID="Label1"></ext:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Durata :
+                    <td class="leftColumn">Durata :
                     </td>
                     <td>
                         <ext:Label runat="server" Text="Durata: 4h" ID="Label2"></ext:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td>Descrizione :
+                    <td class="leftColumn">Descrizione :
                     </td>
                     <td>
                         <ext:Label runat="server" Text="Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label3" Cls="longString"></ext:Label>
@@ -205,23 +206,39 @@
             </table>
         </div>
         <div class="text2">
-            <p>
-                &emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Label4"></ext:Label>
-            </p>
-
-            <p>
-                &emsp;&emsp;<ext:Label runat="server" Text="Argomenti: progettazione concettuale" ID="Label5"></ext:Label>
-            </p>
-
-            <p>
-                &emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Label6"></ext:Label>
-            </p>
-
-            <p>
-                &emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label7" Cls="longString"></ext:Label>
-            </p>
+            <table>
+                <tr>
+                    <td class="leftColumn">Nome :
+                    </td>
+                    <td>
+                        <ext:Label runat="server" Text="Introduzione ai Database" ID="Label4"></ext:Label>
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td class="leftColumn">Argomenti :
+                    </td>
+                    <td>
+                        <ext:Label runat="server" Text="Progettazione concettuale" ID="Label5"></ext:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftColumn">Durata :
+                    </td>
+                    <td>
+                        <ext:Label runat="server" Text="Durata: 4h" ID="Label6"></ext:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftColumn">Descrizione :
+                    </td>
+                    <td>
+                        <ext:Label runat="server" Text="Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label7" Cls="longString"></ext:Label>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div id="piechart" style="float: right;" class="chart"></div>
+        <div id="piechart" class="chart"></div>
     </div>
 
     <br />
@@ -237,7 +254,7 @@
         <div id="menu-nav" class="menu">
             <div id="navigation-bar">
                 <ul>
-                    <li style="float: left;"><a href="#">
+                    <li><a href="#">
                         <span>
                             <ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
@@ -250,7 +267,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li style="float: left;"><a href="#">
+                    <li><a href="#">
                         <span>
                             <ext:Label runat="server" ID="lez2" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
@@ -263,7 +280,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li style="float: left;"><a href="#">
+                    <li><a href="#">
                         <span>
                             <ext:Label runat="server" ID="lez3" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
@@ -276,7 +293,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li style="float: left;"><a href="#">
+                    <li><a href="#">
                         <span>
                             <ext:Label runat="server" ID="lez4" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
@@ -289,7 +306,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li style="float: left;"><a href="#">
+                    <li><a href="#">
                         <span>
                             <ext:Label runat="server" ID="lez5" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
@@ -302,7 +319,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li style="float: left;"><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
+                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
                 </ul>
             </div>
         </div>

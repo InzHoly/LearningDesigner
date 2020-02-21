@@ -12,18 +12,18 @@
 
 .text1 {
     left: 13px;
-    line-height: 10px;
+    line-height: 20px;
     width: 30%;
 }
 
 .text2 {
     left: 13px;
-    line-height: 10px;
+    line-height: 20px;
     width: 40%;
 }
 
 .longString {
-    line-height: 25px;
+    
 }
 
 h2 {
@@ -42,6 +42,7 @@ h2 {
 }
 
 .chart {
+    float: right;
     position: absolute;
     right: 0;
     z-index: -1;
@@ -63,6 +64,7 @@ h2 {
 }
 
     .menu ul li {
+        float: left;
         display: inline;
         padding: 6px;
         border-right: 1px solid #bbb;
@@ -88,6 +90,34 @@ h2 {
 .cmb {
     font-size: 13px;
     margin: 20px;
+}
+
+table {
+    table-layout:auto;
+    width:100%;
+}
+
+.leftColumn {
+    text-align:right;
+    width:100px;
+}
+
+@media (max-width: 1300px) {
+    .chart {
+        display: none;
+    }
+
+    .text1 {
+        left: 13px;
+        line-height: 20px;
+        width: 60%;
+    }
+
+    .text2 {
+        left: 13px;
+        line-height: 20px;
+        width: 60%;
+    }
 }
 
 @-webkit-keyframes hvr-ripple-out {
