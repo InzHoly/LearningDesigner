@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Elenco_moduli.aspx.cs" Inherits="Elenco_moduli" %>
+﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Elenco_moduli.aspx.cs" Inherits="Elenco_moduli" %>
 
 <!DOCTYPE html>
 
@@ -127,7 +127,10 @@
         lez3.Text = s.getLezione(2).getNome();
         lez4.Text = s.getLezione(3).getNome();
         lez5.Text = s.getLezione(4).getNome();
-        
+
+
+
+
     }
 
 
@@ -135,14 +138,15 @@
     protected void bottone(object sender, DirectEventArgs e)
     {
 
+
         String txt = "";
         String nom = "n";
-        int i = 1;
+        int i=1;
         do
         {
 
-            if (e.ExtraParams.GetParameter(nom + i) != null)
-                txt = e.ExtraParams.GetParameter(nom + i).Value;
+            if(e.ExtraParams.GetParameter(nom+i)!=null)
+                txt= e.ExtraParams.GetParameter(nom+i).Value;
             i++;
         } while (txt == "");
 
@@ -159,12 +163,11 @@
         }
         cmb.Hidden = false;
         att = lez;
-        totdurata.Text = "Durata totale: " + lez.getTotore() + " ore";
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
     }
-    
+
 
     protected void mostraAttivita(object sender, DirectEventArgs e)
     {
@@ -195,114 +198,59 @@
         }
         Tipo.Text = "Tipo: " + tipi;
     }
-    
+
 </script>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <link href="Stile.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+    
 
+<body>
+    <h1 class="header">Introduzione ai Database</h1>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        // Load google charts
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-        // Draw the chart and set the chart values
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Activity', 'Hours'],
-                ['Listening', 8],
-                ['Reading', 6],
-                ['Research', 3],
-                ['Teamwork', 5],
-            ]);
+    // Draw the chart and set the chart values
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Activity', 'Hours'],
+            ['Listening', 8],
+            ['Reading', 6],
+            ['Research', 3],
+            ['Teamwork', 5],
+        ]);
 
-            // Optional; add a title and set the width and height of the chart
-            var options = { legend: { position: 'top' }, is3D: true, backgroundColor: 'transparent' };
+    // Optional; add a title and set the width and height of the chart
+        var options = { 'title': 'Distribuzione delle attività', legend: { position: 'top' }, is3D: true, backgroundColor: 'transparent'};
 
-            // Display the chart inside the <div> element with id="piechart"
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data, options);
-        }
-    </script>
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+
+    <div id="piechart" style="float:right;" class="chart"></div>
 
     <ext:ResourceManager runat="server" />
-    <h1 class="header">Introduzione ai Database</h1>
+    
     <div class="details">
-        <div class="text1">
-            <table>
-                <tr>
-                    <td class="leftColumn">Nome :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="Introduzione ai Database" ID="Mod1"></ext:Label>
-                    </td>
-                </tr>
-                <br />
-                <tr>
-                    <td class="leftColumn">Argomenti :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="Progettazione concettuale" ID="Label1"></ext:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">Durata :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="Durata: 4h" ID="Label2"></ext:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">Descrizione :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label3" Cls="longString"></ext:Label>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="text2">
-            <table>
-                <tr>
-                    <td class="leftColumn">Nome :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="Introduzione ai Database" ID="Label4"></ext:Label>
-                    </td>
-                </tr>
-                <br />
-                <tr>
-                    <td class="leftColumn">Argomenti :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="Progettazione concettuale" ID="Label5"></ext:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">Durata :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="Durata: 4h" ID="Label6"></ext:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="leftColumn">Descrizione :
-                    </td>
-                    <td>
-                        <ext:Label runat="server" Text="Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label7" Cls="longString"></ext:Label>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="piechart" class="chart"></div>
+        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Nome: introduzione ai Database" ID="Mod1" >  </ext:Label></h3>
+    
+        <h3>&emsp;&emsp;<ext:Label runat="server"  Text="Argomenti: progettazione concettuale" ID="Label1" >  </ext:Label></h3>
+    
+        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Durata: 4h" ID="Durata" ></ext:Label></h3>
+    
+        <h3>&emsp;&emsp;<ext:Label runat="server" Text="Descrizione: Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label2" ></ext:Label></h3>
     </div>
 
     <hr /> <!-- riga orizzontale -->
@@ -431,102 +379,5 @@
             
         </Items>
     </ext:Window>
-    <br />
-    <hr />
-    <!-- riga orizzontale -->
-    <div class="lezione">
-        <br />
-
-        <h2>Lezioni</h2>
-
-        <br />
-
-        <div id="menu-nav" class="menu">
-            <div id="navigation-bar">
-                <ul>
-                    <li><a href="#">
-                        <span>
-                            <ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                                <DirectEvents>
-                                    <Tap OnEvent="bottone">
-                                        <ExtraParams>
-                                            <ext:Parameter Name="n1" Value="0" Mode="Value" />
-                                        </ExtraParams>
-                                    </Tap>
-                                </DirectEvents>
-                            </ext:Label>
-                        </span></a>
-                    </li>
-                    <li><a href="#">
-                        <span>
-                            <ext:Label runat="server" ID="lez2" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                                <DirectEvents>
-                                    <Tap OnEvent="bottone">
-                                        <ExtraParams>
-                                            <ext:Parameter Name="n2" Value="1" Mode="Value" />
-                                        </ExtraParams>
-                                    </Tap>
-                                </DirectEvents>
-                            </ext:Label>
-                        </span></a>
-                    </li>
-                    <li><a href="#">
-                        <span>
-                            <ext:Label runat="server" ID="lez3" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                                <DirectEvents>
-                                    <Tap OnEvent="bottone">
-                                        <ExtraParams>
-                                            <ext:Parameter Name="n3" Value="2" Mode="Value" />
-                                        </ExtraParams>
-                                    </Tap>
-                                </DirectEvents>
-                            </ext:Label>
-                        </span></a>
-                    </li>
-                    <li><a href="#">
-                        <span>
-                            <ext:Label runat="server" ID="lez4" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                                <DirectEvents>
-                                    <Tap OnEvent="bottone">
-                                        <ExtraParams>
-                                            <ext:Parameter Name="n3" Value="3" Mode="Value" />
-                                        </ExtraParams>
-                                    </Tap>
-                                </DirectEvents>
-                            </ext:Label>
-                        </span></a>
-                    </li>
-                    <li><a href="#">
-                        <span>
-                            <ext:Label runat="server" ID="lez5" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                                <DirectEvents>
-                                    <Tap OnEvent="bottone">
-                                        <ExtraParams>
-                                            <ext:Parameter Name="n4" Value="4" Mode="Value" />
-                                        </ExtraParams>
-                                    </Tap>
-                                </DirectEvents>
-                            </ext:Label>
-                        </span></a>
-                    </li>
-                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="cmb">
-            Modalità 
-            <ext:ComboBox runat="server" ID="cmb">
-                <Items>
-                    <ext:ListItem Text="In classe" Value="CL" />
-                    <ext:ListItem Text="Uscita Didattica" Value="UD" />
-                    <ext:ListItem Text="Laboratorio" Value="LAB" />
-                </Items>
-            </ext:ComboBox>
-        </div>
-        <ext:Label runat="server" ID="descLez"></ext:Label>
-        <br />
-        <ext:Label runat="server" ID="totdurata"></ext:Label>
-    </div>
 </body>
 </html>
