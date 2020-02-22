@@ -305,60 +305,9 @@
         <div id="piechart" class="chart"></div>
     </div>
 
-    <hr /> <!-- riga orizzontale -->
-   
-   
-
-    <h2>Lezioni</h2>
-
-    <br />
-    
-    <div id="menu-nav" class="menu" style="display: inline-block; justify-content: center;">
-        <div id="navigation-bar">
-            <ul>
-                <li style="float: left;"><a href="#">
-                    <span ><ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n1" Value="0" Mode="Value" /></ExtraParams></Tap>
-                    </DirectEvents></ext:Label></span></a>
-                </li>
-                <li style="float: left;"><a href="#">
-                    <span><ext:Label runat="server" ID="lez2" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n2" Value="1" Mode="Value" /></ExtraParams></Tap>
-                    </DirectEvents></ext:Label></span></a>
-                </li>
-                <li style="float: left;"><a href="#">
-                    <span><ext:Label runat="server" ID="lez3" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="2" Mode="Value" /></ExtraParams></Tap>
-                    </DirectEvents></ext:Label></span></a>
-                </li>
-                <li style="float: left;"><a href="#">
-                    <span><ext:Label runat="server" ID="lez4" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n3" Value="3" Mode="Value" /></ExtraParams></Tap>
-                    </DirectEvents></ext:Label></span></a>
-                </li>
-	            <li style="float: left;"><a href="#">
-                    <span><ext:Label runat="server" ID="lez5" Cls="hvr-ripple-out" Height="30px" Width="180px">
-                    <DirectEvents ><Tap OnEvent="bottone" ><ExtraParams><ext:Parameter Name="n4" Value="4" Mode="Value" /></ExtraParams></Tap>
-                    </DirectEvents></ext:Label></span></a>
-                </li>
-                <li style="float: left;"><a href="#" class="hvr-ripple-out"> <i class="fa fa-plus"></i><span></span></a></li>
-            </ul>
-        </div>    
-    </div>
 
     
-    <div class="cmb"> 
-       <ext:Label runat="server" Text="Modalità:"></ext:Label><ext:ComboBox runat="server"  ID="cmb" Editable="false"  Hidden="true">
-            <Items>
-                    <ext:ListItem Text="In classe" Value="In classe" />
-                    <ext:ListItem Text="Uscita Didattica" Value="Uscita Didattica" />
-                    <ext:ListItem Text="Laboratorio" Value="Laboratorio" />
-            </Items>            
-        </ext:ComboBox>
-    </div>
-    <ext:Label runat="server" ID="descLez"> </ext:Label>
-    <br />
-    <ext:Label runat="server" ID="totdurata"></ext:Label>
+   
     <ext:Window runat="server"  Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="450" PageX="0" Draggable="false" Resizable="false">
         <Bin>
             <ext:InfoPanelQueue
