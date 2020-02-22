@@ -1,5 +1,6 @@
 ﻿* {
     font: arial;
+    position: relative;
 }
 
 .header {
@@ -9,26 +10,47 @@
     color: red;
 }
 
-h2{
-    text-align:center;
+.text1 {
+    left: 13px;
+    line-height: 20px;
+    width: 30%;
+}
+
+.text2 {
+    left: 13px;
+    line-height: 20px;
+    width: 40%;
+}
+
+.longString {
+    
+}
+
+h2 {
+    text-align: center;
 }
 
 .details {
+    display: flex;
+    flex-direction: row;
+    height: 230px;
 }
 
 #piechart {
     width: 550px;
     height: 306px;
-    
 }
 
 .chart {
+    float: right;
+    position: absolute;
+    right: 0;
+    z-index: -1;
 }
 
 .menu {
-}
-
-.lezione {
+    display: inline-block;
+    justify-content: center;
 }
 
 .menu ul {
@@ -38,24 +60,24 @@ h2{
     overflow: hidden;
     background-color: #333;
     display: inline-block;
-    left: 50%;
+    left: 15%;
 }
 
-.menu ul li {
-    display: inline;
-    padding: 6px;
-    border-right: 1px solid #bbb;
-    float: left;
-}
+    .menu ul li {
+        float: left;
+        display: inline;
+        padding: 6px;
+        border-right: 1px solid #bbb;
+        float: left;
+    }
 
-.menu ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    /*padding: 14px 16px;*/
-    text-decoration: none;
-
-}
+        .menu ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            /*padding: 14px 16px;*/
+            text-decoration: none;
+        }
 
 .menu ul li a:hover:not(.active) {
     background-color: #4CAF50;
@@ -68,6 +90,34 @@ h2{
 .cmb {
     font-size: 13px;
     margin: 20px;
+}
+
+table {
+    table-layout:auto;
+    width:100%;
+}
+
+.leftColumn {
+    text-align:right;
+    width:100px;
+}
+
+@media (max-width: 1300px) {
+    .chart {
+        display: none;
+    }
+
+    .text1 {
+        left: 13px;
+        line-height: 20px;
+        width: 60%;
+    }
+
+    .text2 {
+        left: 13px;
+        line-height: 20px;
+        width: 60%;
+    }
 }
 
 @-webkit-keyframes hvr-ripple-out {
