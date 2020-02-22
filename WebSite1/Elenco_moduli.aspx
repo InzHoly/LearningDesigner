@@ -4,11 +4,18 @@
 
 <script runat="server">
 
+
+
+
+
     Modulo d;
     Modulo s;
     Lezione att= new Lezione();
     protected void Page_Load(object sender, EventArgs p)
     {
+
+        ciao.Text = query("SELECT * FROM [Utenti];");
+
         d = new Modulo();
         d.setNome("Database");
         d.setAnnoScolastico("2019/2020");
@@ -127,7 +134,7 @@
         lez3.Text = s.getLezione(2).getNome();
         lez4.Text = s.getLezione(3).getNome();
         lez5.Text = s.getLezione(4).getNome();
-        
+
     }
 
 
@@ -164,7 +171,7 @@
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
     }
-    
+
 
     protected void mostraAttivita(object sender, DirectEventArgs e)
     {
@@ -195,7 +202,7 @@
         }
         Tipo.Text = "Tipo: " + tipi;
     }
-    
+
 </script>
 
 
@@ -245,7 +252,6 @@
                         <ext:Label runat="server" Text="Introduzione ai Database" ID="Mod1"></ext:Label>
                     </td>
                 </tr>
-                <br />
                 <tr>
                     <td class="leftColumn">Argomenti :
                     </td>
@@ -278,7 +284,6 @@
                         <ext:Label runat="server" Text="Introduzione ai Database" ID="Label4"></ext:Label>
                     </td>
                 </tr>
-                <br />
                 <tr>
                     <td class="leftColumn">Argomenti :
                     </td>
@@ -383,6 +388,7 @@
     <br />
     <hr />
     <!-- riga orizzontale -->
+    <ext:Label runat="server" ID="ciao"></ext:Label>
     <div class="lezione">
         <br />
 
