@@ -515,16 +515,23 @@
         </div>
 
         <div class="cmb">
-            Modalità 
-            <ext:ComboBox runat="server" ID="cmb">
-                <Items>
-                    <ext:ListItem Text="In classe" Value="CL" />
-                    <ext:ListItem Text="Uscita Didattica" Value="UD" />
-                    <ext:ListItem Text="Laboratorio" Value="LAB" />
-                </Items>
-            </ext:ComboBox>
+            <table>
+                <tr>
+                    <td>Modalità :
+                    </td>
+                    <td>
+                        <ext:ComboBox runat="server" ID="cmb">
+                            <Items>
+                                <ext:ListItem Text="In classe" Value="CL" />
+                                <ext:ListItem Text="Uscita Didattica" Value="UD" />
+                                <ext:ListItem Text="Laboratorio" Value="LAB" />
+                            </Items>
+                        </ext:ComboBox>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <ext:Label runat="server" ID="descLez"></ext:Label>
+        <ext:Label runat="server" ID="descLez" Cls="description"></ext:Label>
         <br />
         <ext:Label runat="server" ID="totdurata"></ext:Label>
     </div>
