@@ -10,19 +10,19 @@ using System.Text;
 public partial class Elenco_moduli : System.Web.UI.Page
 {
 
-    public String query(String sql)
+    public String Query(String sql)
     {
         
         String risposta = "";
-        SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;user id=UserDef;Initial Catalog=C:\\USERS\\LUCA\\DOCUMENTS\\GITREPOS\\LEARNINGDESIGNER\\WEBSITE1\\APP_DATA\\LNDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\lddb.mdf;Integrated Security=True");
         SqlCommand command = new SqlCommand(sql, connection);
         connection.Open();
         SqlDataReader reader = command.ExecuteReader();
         while (reader.Read())
         {
-            risposta += reader.GetString(0) + " " + reader.GetString(1);
+            for (int i = 0; i < reader.FieldCount; i++)
+                risposta += reader.GetValue(i) + " ";
         }
-        connection.Close();
         return risposta;
     }
     

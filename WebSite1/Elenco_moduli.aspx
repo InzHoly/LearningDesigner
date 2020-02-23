@@ -14,7 +14,7 @@
     protected void Page_Load(object sender, EventArgs p)
     {
 
-        ciao.Text = query("SELECT * FROM [Utenti];");
+        ciao.Text = Query("SELECT * FROM [Utenti];");
 
         d = new Modulo();
         d.setNome("Database");
