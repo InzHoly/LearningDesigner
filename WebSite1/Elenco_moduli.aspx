@@ -313,7 +313,7 @@
 
     
    
-    <ext:Window runat="server"  Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="450" PageX="0" Draggable="false" Resizable="false">
+    <ext:Window runat="server"  Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="500" PageX="550" Draggable="false" Resizable="false">
         <Bin>
             <ext:InfoPanelQueue
                 runat="server"

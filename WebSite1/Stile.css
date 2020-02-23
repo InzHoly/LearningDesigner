@@ -95,8 +95,8 @@ h2 {
 }
 
 table {
-    table-layout:auto;
-    width:100%;
+    table-layout: auto;
+    width: 100%;
 }
 
 .leftColumn {
@@ -116,14 +116,20 @@ table {
 
     .text1 {
         left: 13px;
-        line-height: 20px;
+        line-height: 5px;
         width: 60%;
     }
 
     .text2 {
         left: 13px;
-        line-height: 20px;
+        line-height: 5px;
         width: 60%;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: row;
+        height: 310px;
     }
 }
 
