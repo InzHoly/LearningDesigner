@@ -12,14 +12,14 @@
 
 .text1 {
     left: 7px;
-    line-height: 20px;
-    width: 30%;
+    line-height: 30px;
+    width: 35%;
 }
 
 .text2 {
     left: 13px;
-    line-height: 20px;
-    width: 40%;
+    line-height: 30px;
+    width: 35%;
     margin-right:13px;
 }
 
@@ -34,7 +34,7 @@ h2 {
 .details {
     display: flex;
     flex-direction: row;
-    height: 230px;
+    height: 220px;
 }
 
 #piechart {
@@ -116,20 +116,20 @@ table {
 
     .text1 {
         left: 13px;
-        line-height: 5px;
+        line-height: 20px;
         width: 60%;
     }
 
     .text2 {
         left: 13px;
-        line-height: 5px;
+        line-height: 20px;
         width: 60%;
     }
 
     .details {
         display: flex;
         flex-direction: row;
-        height: 310px;
+        height: 280px;
     }
 }
 
