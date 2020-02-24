@@ -3,11 +3,15 @@
 <!DOCTYPE html>
 
 <script runat="server">
+
     Modulo d;
     Modulo s;
     Lezione att= new Lezione();
     protected void Page_Load(object sender, EventArgs p)
     {
+
+        ciao.Text = Query("SELECT * FROM [Utenti];");
+
         d = new Modulo();
         d.setNome("Database");
         d.setAnnoScolastico("2019/2020");
@@ -249,7 +253,6 @@
                         <ext:Label runat="server" Text="Introduzione ai Database" ID="Mod1"></ext:Label>
                     </td>
                 </tr>
-                <br />
                 <tr>
                     <td class="leftColumn">Argomenti :
                     </td>
@@ -282,7 +285,6 @@
                         <ext:Label runat="server" Text="Introduzione ai Database" ID="Label4"></ext:Label>
                     </td>
                 </tr>
-                <br />
                 <tr>
                     <td class="leftColumn">Argomenti :
                     </td>
@@ -312,7 +314,9 @@
 
     
    
-    <ext:Window runat="server"   Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="450" PageX="600"  Resizable="false">
+
+    <ext:Window runat="server"  Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="500" PageX="550" Draggable="false" Resizable="false">
+
         <Bin>
             <ext:InfoPanelQueue
                 runat="server"
@@ -387,6 +391,7 @@
     <br />
     <hr />
     <!-- riga orizzontale -->
+    <ext:Label runat="server" ID="ciao"></ext:Label>
     <div class="lezione">
         
 
