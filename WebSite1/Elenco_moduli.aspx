@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 
 <script runat="server">
-
     Modulo d;
     Modulo s;
     Lezione att= new Lezione();
@@ -21,6 +20,8 @@
         d.setNlezioni(10);
         d.setObbiettivo("Progettazione Database");
         d.setTag("Informatica");
+
+
 
         Modulo f = new Modulo();
         f.setNome("Decandentismo");
@@ -127,7 +128,7 @@
         lez3.Text = s.getLezione(2).getNome();
         lez4.Text = s.getLezione(3).getNome();
         lez5.Text = s.getLezione(4).getNome();
-        
+
     }
 
 
@@ -149,7 +150,10 @@
         int index = int.Parse(txt);
 
         Lezione lez = s.getLezione(index);
-        descLez.Text = lez.getDescrizione();
+        nomLez.Text = s.getNome();
+        mods.Hidden = false;
+        cmb.Hidden = false;
+        descLez.Text = "Descrizione: " + lez.getDescrizione();
         totdurata.Text ="Durata totale: "+ lez.getTotore() + " ore";
         switch (lez.getModalita())
         {
@@ -164,7 +168,7 @@
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
     }
-    
+
 
     protected void mostraAttivita(object sender, DirectEventArgs e)
     {
@@ -195,7 +199,7 @@
         }
         Tipo.Text = "Tipo: " + tipi;
     }
-    
+
 </script>
 
 
@@ -308,7 +312,7 @@
 
     
    
-    <ext:Window runat="server"  Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="450" PageX="0" Draggable="false" Resizable="false">
+    <ext:Window runat="server"   Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="450" PageX="600"  Resizable="false">
         <Bin>
             <ext:InfoPanelQueue
                 runat="server"
@@ -384,7 +388,7 @@
     <hr />
     <!-- riga orizzontale -->
     <div class="lezione">
-        <br />
+        
 
         <h2>Lezioni</h2>
 
@@ -461,15 +465,15 @@
                     <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
                 </ul>
             </div>
-        </div>
-
-        <div class="cmb">
-            <table>
-                <tr>
-                    <td>Modalità :
-                    </td>
-                    <td>
-                        <ext:ComboBox runat="server" ID="cmb">
+        
+        <table>
+            <tr>
+                <td class="description"><ext:Label runat="server" ID="nomLez" Cls="description"></ext:Label></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="description"><ext:Label runat="server" Hidden="true" Cls="description" Text="Modalità: " ID="mods" ></ext:Label>
+                        <ext:ComboBox runat="server" Hidden="true" ID="cmb">
                             <Items>
                                 <ext:ListItem Text="In classe" Value="CL" />
                                 <ext:ListItem Text="Uscita Didattica" Value="UD" />
@@ -478,11 +482,16 @@
                         </ext:ComboBox>
                     </td>
                 </tr>
-            </table>
-        </div>
-        <ext:Label runat="server" ID="descLez" Cls="description"></ext:Label>
-        <br />
-        <ext:Label runat="server" ID="totdurata"></ext:Label>
+            <tr>
+                <td class="description"><ext:Label runat="server" ID="descLez" Cls="description"></ext:Label></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="description"><ext:Label runat="server" ID="totdurata" Cls="description"></ext:Label></td>
+                <td></td>
+            </tr>
+        </table>
+        
     </div>
 </body>
 </html>
