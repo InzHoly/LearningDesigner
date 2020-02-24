@@ -54,15 +54,15 @@ h2 {
     justify-content: center;
 }
 
-.menu ul {
-    list-style-type: none;
-    margin: auto;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    display: inline-block;
-    left: 15%;
-}
+    .menu ul {
+        list-style-type: none;
+        margin: auto;
+        padding: 0;
+        overflow: hidden;
+        background-color: #6495ed;
+        display: inline-block;
+        left: 15%;
+    }
 
     .menu ul li {
         float: left;
@@ -80,16 +80,16 @@ h2 {
             text-decoration: none;
         }
 
-.menu ul li a:hover:not(.active) {
-    background-color: #4CAF50;
-}
+            .menu ul li a:hover:not(.active) {
+                background-color: #5fa2dd;
+            }
 
 .active {
-    background-color: #4CAF50;
+    background-color: darkblue;
 }
 
-.cmb {
-    font-size: 16px;
+.comb {
+    font-size: 12px;
     margin: 20px;
     width:15%;
 }
@@ -106,7 +106,9 @@ table {
 }
 
 .description {
-    text-align:center;
+    text-align: left;
+    left: 10px;
+    width: 500px;
 }
 
 @media (max-width: 1300px) {
@@ -165,7 +167,7 @@ table {
     .hvr-ripple-out:before {
         content: '';
         position: absolute;
-        border: #33333333 solid 2px;
+        border: #5fa2dd solid 2px;
         top: 0;
         right: 0;
         bottom: 0;
@@ -177,5 +179,5 @@ table {
     .hvr-ripple-out:hover:before, .hvr-ripple-out:focus:before, .hvr-ripple-out:active:before {
         -webkit-animation-name: hvr-ripple-out;
         animation-name: hvr-ripple-out;
-        border: #18bd1af5 solid 2px;
+        border: #5fa2dd solid 2px;
     }
