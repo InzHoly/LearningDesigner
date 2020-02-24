@@ -10,7 +10,7 @@
     protected void Page_Load(object sender, EventArgs p)
     {
 
-        ciao.Text = Query("SELECT * FROM [Utenti];");
+        ciao.Text = Query("SELECT * FROM [Moduli] WHERE Id=1;");
 
         d = new Modulo();
         d.setNome("Database");
@@ -126,12 +126,12 @@
         att.addAttivita(at2);
         att.addAttivita(at3);
         att.addAttivita(at4);
-
-        lez1.Text = s.getLezione(0).getNome();
-        lez2.Text = s.getLezione(1).getNome();
-        lez3.Text = s.getLezione(2).getNome();
-        lez4.Text = s.getLezione(3).getNome();
-        lez5.Text = s.getLezione(4).getNome();
+        int i = 1;
+        lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
+        lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
+        lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
+        lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
+        lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
 
     }
 
