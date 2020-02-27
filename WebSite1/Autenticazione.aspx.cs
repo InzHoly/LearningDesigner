@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
         while (reader.Read())
         {
             for (int i = 0; i < reader.FieldCount; i++)
-                risposta += reader.GetValue(i) + " ";
+                risposta += reader.GetValue(i);
         }
         connection.Close();
         return risposta;
