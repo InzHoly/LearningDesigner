@@ -127,6 +127,18 @@
         att.addAttivita(at3);
         att.addAttivita(at4);
         int i = 1;
+
+        Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = 2");
+        Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = 2");
+        Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id = 2");
+        Modulo_Classe.Text = Query("SELECT classe FROM Moduli WHERE Id = 2");
+        Modulo_Corso.Text = Query("SELECT corso FROM Moduli WHERE Id = 2");
+        Modulo_Descrizione.Text = Query("SELECT descrizione FROM Moduli WHERE Id = 2");
+        Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = 2");
+        Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = 2");
+        
+
+
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
         lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
         lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
@@ -151,15 +163,15 @@
             i++;
         } while (txt == "");
 
-        int index = int.Parse(txt);
+        int index = int.Parse(txt)+1;
 
-        Lezione lez = s.getLezione(index);
-        nomLez.Text = s.getNome();
+        Lezione lez = s.getLezione(index-1);
+        nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Id="+index+";");
         mods.Hidden = false;
         cmb.Hidden = false;
-        descLez.Text = "Descrizione: " + lez.getDescrizione();
-        totdurata.Text ="Durata totale: "+ lez.getTotore() + " ore";
-        switch (lez.getModalita())
+        descLez.Text = "Descrizione: " + Query("SELECT descrizione FROM [Lezioni] WHERE Id="+index+";");;
+        totdurata.Text ="Durata totale: "+ Query("SELECT totore FROM [Lezioni] WHERE Id="+index+";") + " ore";
+        switch ( int.Parse(""+ Query("SELECT modalità FROM [Lezioni] WHERE Id="+index+";")))
         {
             case 0:cmb.SetValue("In classse");break;
             case 1:cmb.SetValue("Uscita didattica");break;
@@ -167,7 +179,7 @@
         }
         cmb.Hidden = false;
         att = lez;
-        totdurata.Text = "Durata totale: " + lez.getTotore() + " ore";
+        
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -250,28 +262,28 @@
                     <td class="leftColumn">Nome :
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="Introduzione ai Database" ID="Mod1"></ext:Label>
+                        <ext:Label runat="server"  ID="Modulo_Nome"></ext:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="leftColumn">Argomenti :
+                    <td class="leftColumn">Competenze :
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="Progettazione concettuale" ID="Label1"></ext:Label>
+                        <ext:Label runat="server"  ID="Modulo_Competenze"></ext:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="leftColumn">Durata :
+                    <td class="leftColumn">Prerequisiti :
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="Durata: 4h" ID="Label2"></ext:Label>
+                        <ext:Label runat="server"  ID="Modulo_Prerequisiti"></ext:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="leftColumn">Descrizione :
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label3" Cls="longString"></ext:Label>
+                        <ext:Label runat="server"  ID="Modulo_Descrizione" Cls="longString"></ext:Label>
                     </td>
                 </tr>
             </table>
@@ -279,31 +291,31 @@
         <div class="text2">
             <table>
                 <tr>
-                    <td class="leftColumn">Nome :
+                    <td class="leftColumn">Corso :
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="Introduzione ai Database" ID="Label4"></ext:Label>
+                        <ext:Label runat="server"  ID="Modulo_Corso"></ext:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="leftColumn">Argomenti :
+                    <td class="leftColumn">Anno :
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="Progettazione concettuale" ID="Label5"></ext:Label>
+                        <ext:Label runat="server"  ID="Modulo_Anno"></ext:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="leftColumn">Durata :
+                    <td class="leftColumn">Classe :
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="Durata: 4h" ID="Label6"></ext:Label>
+                        <ext:Label runat="server"  ID="Modulo_Classe"></ext:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="leftColumn">Descrizione :
+                    <td class="leftColumn">Numero Lezioni:
                     </td>
                     <td>
-                        <ext:Label runat="server" Text="Progettazione concettuale di Database, realizzazione di schema ER, ipotesi, commenti per l'applicazione" ID="Label7" Cls="longString"></ext:Label>
+                        <ext:Label runat="server"  ID="Modulo_Nlezioni" ></ext:Label>
                     </td>
                 </tr>
             </table>
@@ -398,9 +410,9 @@
         <h2>Lezioni</h2>
 
         <br />
-
-        <div id="menu-nav" class="menu">
-            <div id="navigation-bar">
+        
+        <div id="menunav" class="menu" runat="server">
+            <div id="navigationbar" runat="server">
                 <ul>
                     <li><a href="#">
                         <span>
@@ -470,7 +482,7 @@
                     <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
                 </ul>
             </div>
-        
+        </div>
         <table>
             <tr>
                 <td class="description"><ext:Label runat="server" ID="nomLez" Cls="description"></ext:Label></td>

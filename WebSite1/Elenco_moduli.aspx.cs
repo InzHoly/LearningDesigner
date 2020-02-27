@@ -23,6 +23,7 @@ public partial class Elenco_moduli : System.Web.UI.Page
             for (int i = 0; i < reader.FieldCount; i++)
                 risposta += reader.GetValue(i) + " ";
         }
+        connection.Close();
         return risposta;
     }
     
