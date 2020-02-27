@@ -16,14 +16,19 @@ public partial class _Default : System.Web.UI.Page
     public void Login(object sender, EventArgs e)
     {
         String n = "Luca";
-        String p = "Pass";
-        if (Query("SELECT password FROM [Utenti] where nome ='"+n+"';") == p)
-        {
-            Session.Add("login",true);
-            Response.Redirect("Elenco_moduli.aspx");
-    }
+        String p = "Passs";
+        if (Query("SELECT password FROM [Utenti] where nome ='" + n + "';") == "")
+            user.Text = "nome utente sbaliato";
         else
-            password.Text = Query("SELECT password FROM [Utenti] where nome ='" + n + "';");
+            if (Query("SELECT password FROM [Utenti] where nome ='"+n+"';") == p)
+            {
+                Session.Add("login",true);
+                Response.Redirect("Elenco_moduli.aspx");
+            }
+            else
+            {
+            user.Text = Query("SELECT password FROM [Utenti] where nome ='" + n + "';") + " è quella giusta tua bassword sbaliata";
+            }
 
     }
     public String Query(String sql)
