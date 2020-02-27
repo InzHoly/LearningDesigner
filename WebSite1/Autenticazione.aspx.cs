@@ -15,15 +15,15 @@ public partial class _Default : System.Web.UI.Page
 
     public void Login(object sender, EventArgs e)
     {
-        String n = user.ToString();
-        String p = password.ToString();
-        if (Query("SELECT Password FROM [Utenti] where Nome ='"+n+"';").Equals(p))
+        String n = "Luca";
+        String p = "Pass";
+        if (Query("SELECT password FROM [Utenti] where nome ='"+n+"';") == p)
         {
             Session.Add("login",true);
             Response.Redirect("Elenco_moduli.aspx");
     }
         else
-            user.SetText("Login fallito");
+            password.Text = Query("SELECT password FROM [Utenti] where nome ='" + n + "';");
 
     }
     public String Query(String sql)
