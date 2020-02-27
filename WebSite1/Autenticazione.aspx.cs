@@ -17,7 +17,7 @@ public partial class _Default : System.Web.UI.Page
     {
         String n = user.ToString();
         String p = password.ToString();
-        if (Query("SELECT Password FROM [Utenti] where Nome = " + n + ";").Equals(p))
+        if (Query("SELECT Password FROM [Utenti] where Nome ='"+n+"';").Equals(p))
         {
             Session.Add("login",true);
             Response.Redirect("Elenco_moduli.aspx");
