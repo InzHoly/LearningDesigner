@@ -14,20 +14,20 @@ public partial class _Default : System.Web.UI.Page
     }
 
     public void Login(object sender, EventArgs e)
-    {
-        String n = "Luca";
-        String p = "Passs";
-        if (Query("SELECT password FROM [Utenti] where nome ='" + n + "';") == "")
+    {   
+        String n = user.Text;
+        String p = password.Text;
+        if (Query("SELECT password FROM [Utenti] where nome ='"+n+"';").Equals(""))
             user.Text = "nome utente sbaliato";
         else
-            if (Query("SELECT password FROM [Utenti] where nome ='"+n+"';") == p)
+            if (Query("SELECT password FROM [Utenti] where nome ='"+n+"';").Equals(p))
             {
                 Session.Add("login",true);
                 Response.Redirect("Elenco_moduli.aspx");
             }
             else
             {
-            user.Text = Query("SELECT password FROM [Utenti] where nome ='" + n + "';") + " è quella giusta tua bassword sbaliata";
+                
             }
 
     }
