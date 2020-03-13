@@ -1,5 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Autenticazione.aspx.cs" Inherits="_Default" %>
 
+<script runat="server">
+
+    protected void Btn_Login(object sender, DirectEventArgs e){
+        String username = user.Text;
+        String pwd = password.Text;
+
+
+    }
+
+
+</script>
+
 <!DOCTYPE html>
 
 <html>
