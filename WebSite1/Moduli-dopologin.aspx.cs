@@ -26,4 +26,21 @@ public partial class _Default : System.Web.UI.Page
         connection.Close();
         return risposta;
     }
+
+    public String Querys(String sql)
+    {
+
+        String risposta = "";
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\lddb.mdf;Integrated Security=True");
+        SqlCommand command = new SqlCommand(sql, connection);
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            for (int i = 0; i < reader.FieldCount; i++)
+                risposta += reader.GetValue(i);
+        }
+        connection.Close();
+        return risposta;
+    }
 }
