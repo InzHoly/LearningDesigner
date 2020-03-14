@@ -2,12 +2,6 @@
 
 <script runat="server">
 
-    protected void Btn_Login(object sender, DirectEventArgs e){
-        String username = user.Text;
-        String pwd = password.Text;
-
-
-    }
 
 
 </script>
@@ -16,7 +10,7 @@
 
 <html>
 <head runat="server">
-    <title>Login Form - Ext.NET Examples</title>
+    <title>Login Form</title>
     <link href="/resources/css/examples.css" rel="stylesheet" />
 </head>
 <body>
