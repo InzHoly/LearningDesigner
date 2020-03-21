@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <script runat="server">
+
     Modulo d;
     Modulo s;
     Lezione att= new Lezione();
@@ -135,7 +136,7 @@
         Modulo_Descrizione.Text = Query("SELECT descrizione FROM Moduli WHERE Id = 2");
         Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = 2");
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = 2");
-
+        
 
 
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
@@ -178,7 +179,7 @@
         }
         cmb.Hidden = false;
         att = lez;
-
+        
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -229,7 +230,6 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-
         // Load google charts
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
@@ -413,11 +413,10 @@
         
         <div id="menunav" class="menu" runat="server">
             <div id="navigationbar" runat="server">
-                <ul><!-- inizio for-->
-                    <% for (int i=0; i<5; i++) {%>
+                <ul>
                     <li><a href="#">
                         <span>
-                            <ext:Label runat="server" ID="lez<%response.write(&i)%>" Cls="hvr-ripple-out" Height="30px" Width="180px">
+                            <ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
                                     <Tap OnEvent="bottone">
                                         <ExtraParams>
@@ -428,7 +427,6 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <!-- 
                     <li><a href="#">
                         <span>
                             <ext:Label runat="server" ID="lez2" Cls="hvr-ripple-out" Height="30px" Width="180px">
@@ -481,8 +479,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>inizio for-->
-                    <% } %>
+                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
                 </ul>
             </div>
         </div>
