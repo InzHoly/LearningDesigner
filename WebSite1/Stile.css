@@ -67,7 +67,7 @@ h2 {
     .menu ul li {
         float: left;
         display: inline;
-        padding: 6px;
+        padding: 10px;
         border-right: 1px solid #bbb;
         float: left;
     }
@@ -81,7 +81,7 @@ h2 {
         }
 
             .menu ul li a:hover:not(.active) {
-                background-color: #5fa2dd;
+                background-color: #003399;
             }
 
 .active {
@@ -167,7 +167,7 @@ table {
     .hvr-ripple-out:before {
         content: '';
         position: absolute;
-        border: #5fa2dd solid 2px;
+        border: #6495ed solid 2px;
         top: 0;
         right: 0;
         bottom: 0;
@@ -179,5 +179,5 @@ table {
     .hvr-ripple-out:hover:before, .hvr-ripple-out:focus:before, .hvr-ripple-out:active:before {
         -webkit-animation-name: hvr-ripple-out;
         animation-name: hvr-ripple-out;
-        border: #5fa2dd solid 2px;
+        border: #003399 solid 2px;
     }
