@@ -414,10 +414,9 @@
         <div id="menunav" class="menu" runat="server">
             <div id="navigationbar" runat="server">
                 <ul><!-- inizio for-->
-                    <% for (int i=0; i<5; i++) {%>
                     <li><a href="#">
                         <span>
-                            <ext:Label runat="server" ID="lez<%response.write(&i)%>" Cls="hvr-ripple-out" Height="30px" Width="180px">
+                            <ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
                                     <Tap OnEvent="bottone">
                                         <ExtraParams>
@@ -428,7 +427,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <!-- 
+                    <!-- inizio for-->
                     <li><a href="#">
                         <span>
                             <ext:Label runat="server" ID="lez2" Cls="hvr-ripple-out" Height="30px" Width="180px">
@@ -481,8 +480,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>inizio for-->
-                    <% } %>
+                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
                 </ul>
             </div>
         </div>
