@@ -54,6 +54,13 @@
                         Text="Registrati qui!"
                         Target="_blank"
                         />
+
+                    <ext:Hyperlink
+                        runat="server"
+                        NavigateUrl="Recuperapassword.aspx"
+                        Text="Hai dimenticato la password?"
+                        Target="_blank"
+                        />
                 </Items>
                 <Buttons>
                    <ext:Button ID="extBtn1" runat="server" Text="Login">
