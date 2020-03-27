@@ -17,19 +17,13 @@ public partial class _Default : System.Web.UI.Page
     {   
         String n = user.Text;
         String p = password.Text;
-        if (Query("SELECT password FROM [Utenti] where nome ='"+n+"';").Equals(""))
+        if (Query("SELECT email FROM [Utenti] where nome ='"+n+"' and password = '"+p+"';").Equals(""))
             user.Text = "nome utente sbaliato";
         else
-            if (Query("SELECT password FROM [Utenti] where nome ='"+n+"';").Equals(p))
             {
-                Session.Add("login",true);
-                Response.Redirect("Elenco_moduli.aspx");
+                Session.Add("login",Query("SELECT Id FROM [Utenti] where nome ='"+n+"'"));
+                Response.Redirect("Moduli-dopologin.aspx");
             }
-            else
-            {
-                
-            }
-
     }
     public String Query(String sql)
     {

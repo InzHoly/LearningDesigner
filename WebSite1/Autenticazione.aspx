@@ -15,7 +15,9 @@
 </head>
 <body>
     <ext:ResourceManager runat="server" />
-
+    <div style="position:absolute"; top:190px; left:120px">
+        <img src="Immagini/logo.PNG" height="400" width="400" />    
+    </div>
     <ext:Viewport runat="server">
         <LayoutConfig>
             <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
@@ -46,7 +48,12 @@
                         InputType="Password"
                         ID="password"/>
 
-                    <ext:Checkbox runat="server" FieldLabel="Remember me" Name="remember" ID="remember" />
+                    <ext:Hyperlink
+                        runat="server"
+                        NavigateUrl="Registrazione.aspx"
+                        Text="Registrati qui!"
+                        Target="_blank"
+                        />
                 </Items>
                 <Buttons>
                    <ext:Button ID="extBtn1" runat="server" Text="Login">
