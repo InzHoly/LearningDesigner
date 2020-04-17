@@ -20,7 +20,8 @@
             {
 
                 String ids = "" + int.Parse(word);
-                String nome = Querys("SELECT nome FROM Moduli WHERE Id = " + ids+";");
+                String nomepart = Querys("SELECT nome FROM Moduli WHERE Id = " + ids+";");
+                String nome = "<a href='Elenco_moduli.aspx?id=" + ids + "'>" + nomepart + "</a>";
                 String corso = Querys("SELECT corso FROM Moduli WHERE Id = " + ids+";");
                 String anno = Querys("SELECT anno_corso FROM Moduli WHERE Id =" + ids+";");
                 String classe = Querys("SELECT classe FROM Moduli WHERE Id = " + ids+";");
