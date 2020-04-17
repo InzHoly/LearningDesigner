@@ -20,14 +20,18 @@ public partial class _Default : System.Web.UI.Page
         {
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            String from = "";//email ad usare
+            String from = "learner.designing@gmail.com";//email ad usare
             mail.From = new MailAddress(from);
             mail.To.Add(email.Text);
             mail.Subject = "Recupero Password LearningDesigner";
-            mail.Body = "La tua password è : "+Query("select password from [Utenti] where email = '"+email.Text+"'");
+            String password = Query("select password from [Utenti] where email = '" + email.Text + "'");
+            if (password == "")
+                mail.Body = "E' stata inoltrata una richiesta di recupero password ma non sembra esserci nessun account LearningDesigner collegato ad essa.\nSe credi ci sia un errore contatta qualcuno per ricevere assistenza.\nGrazie.";
+            else
+                mail.Body = "La password associata a questo indirizzo email è : "+password;
 
             SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential(from, "passwordemailfrom");
+            SmtpServer.Credentials = new System.Net.NetworkCredential(from, "eneamucino10");
             SmtpServer.EnableSsl = true;
 
             SmtpServer.Send(mail);
