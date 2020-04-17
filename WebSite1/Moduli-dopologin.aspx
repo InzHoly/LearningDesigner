@@ -7,7 +7,7 @@
         if(Session["login"] != null)
         {
             List<Modul> s = new List<Modul> { };
-            
+
             String u=Session["login"].ToString();
             GridPanel1.Title = "Moduli di "+ Querys("SELECT nome FROM Utenti WHERE Id = " + u + ";");
 
@@ -25,13 +25,13 @@
                 String anno = Querys("SELECT anno_corso FROM Moduli WHERE Id =" + ids+";");
                 String classe = Querys("SELECT classe FROM Moduli WHERE Id = " + ids+";");
                 String descrizione = Querys("SELECT descrizione FROM Moduli WHERE Id = " + ids+";");
-
-                Modul m = new Modul(nome, corso, anno, classe, descrizione);
+                int pubblica = int.Parse(Querys("SELECT pubblica FROM Moduli WHERE Id = " + ids+";"));
+                Modul m = new Modul(nome, corso, anno, classe, descrizione,pubblica);
 
                 s.Add(m);
 
 
-                
+
             }
 
 
@@ -59,15 +59,22 @@
 
     }
 
+    protected void gotoModulo(object sender, EventArgs e)
+    {
+
+    }
+
     public class Modul
     {
-        public Modul(String nome, String corso, String anno, String classe, String descrizione)
+        public Modul(String nome, String corso, String anno, String classe, String descrizione, int pubblica)
         {
             this.Nome = nome;
             this.Corso = corso;
             this.Anno = anno;
             this.Classe = classe;
             this.Descrizione = descrizione;
+            this.Pubblica = pubblica;
+
         }
 
         public String Nome { get; set; }
@@ -75,6 +82,7 @@
         public String Anno { get; set; }
         public String Classe { get; set; }
         public String Descrizione { get; set; }
+        public int Pubblica { get; set; }
     }
 
 </script>
@@ -106,6 +114,7 @@
                     <ext:ModelField Name="Anno" />
                     <ext:ModelField Name="Classe" />
                     <ext:ModelField Name="Descrizione" />
+                    <ext:ModelField Name="Pubblica"></ext:ModelField>
                 </Fields>
             </ext:Model>
         </Model>
@@ -126,11 +135,14 @@
                 Height="350">
                 <ColumnModel runat="server">
                     <Columns>
-                        <ext:Column runat="server" Text="Nome" DataIndex="Nome" Flex="1" />
+                        <ext:Column runat="server" Text="Nome" DataIndex="Nome" Flex="1" >
+                        
+                        </ext:Column>
                         <ext:Column runat="server" Text="Corso" Width="75" DataIndex="Corso"/>
                         <ext:Column runat="server" Text="Anno" Width="100" DataIndex="Anno"/>
                         <ext:Column runat="server" Text="Classe" Width="75" DataIndex="Classe"/>
                         <ext:Column runat="server" Text="Descrizione" Flex="1"  DataIndex="Descrizione"/>
+                        <ext:Column runat="server" Text="Pubblica" DataIndex="Pubblica"></ext:Column>
                     </Columns>
                 </ColumnModel>
             </ext:GridPanel>
