@@ -19,6 +19,13 @@
             }
 
     }
+
+    protected void register(object sender, DirectEventArgs e)
+    {
+        Response.Redirect("registrazione.aspx");
+        return;       
+
+    }
 </script>
 
 
@@ -86,7 +93,19 @@
                             </Click>
                     </DirectEvents>
                 </ext:Button>
-                <ext:Button runat="server" Text="Register" />
+                <ext:Button
+                    ID="Button2"
+                    runat="server"
+                    Text="Registrati"
+                    Icon="Accept"
+                    FormBind="true"
+                    >
+                    <DirectEvents>
+                        <Click OnEvent="register">
+                                <EventMask ShowMask="true" />
+                            </Click>
+                    </DirectEvents>
+                </ext:Button>
             </Buttons>
             
         </ext:Window>

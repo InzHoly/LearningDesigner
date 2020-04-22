@@ -129,17 +129,7 @@
         att.addAttivita(at4);
         int i = 1;
 
-<<<<<<< Updated upstream
-        Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = 2");
-        Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = 2");
-        Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id = 2");
-        Modulo_Classe.Text = Query("SELECT classe FROM Moduli WHERE Id = 2");
-        Modulo_Corso.Text = Query("SELECT corso FROM Moduli WHERE Id = 2");
-        Modulo_Descrizione.Text = Query("SELECT descrizione FROM Moduli WHERE Id = 2");
-        Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = 2");
-        Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = 2");
-        
-=======
+
         id = int.Parse(Request.Params["id"]);
         Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = "+id);
         Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = "+id);
@@ -150,7 +140,6 @@
         Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = "+id);
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = "+id);
 
->>>>>>> Stashed changes
 
 
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
