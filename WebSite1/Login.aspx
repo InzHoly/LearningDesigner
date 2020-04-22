@@ -47,7 +47,7 @@
             Height="200"
             Icon="Lock"
             Title="Login"
-            Draggable="true"
+            Draggable="false"
             Width="500"
             Modal="false"
             BodyPadding="5"
@@ -87,10 +87,12 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button runat="server" Text="Register" />
+                <ext:Button runat="server" Text="Reset Password" />
             </Buttons>
             
         </ext:Window>
        
     </form>
+
 </body>
 </html>
