@@ -7,6 +7,7 @@
     Modulo d;
     Modulo s;
     Lezione att= new Lezione();
+    int id;
     protected void Page_Load(object sender, EventArgs p)
     {
 
@@ -128,6 +129,7 @@
         att.addAttivita(at4);
         int i = 1;
 
+<<<<<<< Updated upstream
         Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = 2");
         Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = 2");
         Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id = 2");
@@ -137,13 +139,25 @@
         Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = 2");
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = 2");
         
+=======
+        id = int.Parse(Request.Params["id"]);
+        Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = "+id);
+        Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = "+id);
+        Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id ="+id);
+        Modulo_Classe.Text = Query("SELECT classe FROM Moduli WHERE Id = "+id);
+        Modulo_Corso.Text = Query("SELECT corso FROM Moduli WHERE Id = "+id);
+        Modulo_Descrizione.Text = Query("SELECT descrizione FROM Moduli WHERE Id = "+id);
+        Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = "+id);
+        Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = "+id);
+
+>>>>>>> Stashed changes
 
 
-        lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
-        lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
-        lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
-        lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
-        lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
+        lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
+        lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
+        lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
+        lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
+        lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
 
     }
 
@@ -151,7 +165,7 @@
 
     protected void bottone(object sender, DirectEventArgs e)
     {
-
+        
         String txt = "";
         String nom = "n";
         int i = 1;
@@ -166,12 +180,12 @@
         int index = int.Parse(txt)+1;
 
         Lezione lez = s.getLezione(index-1);
-        nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Id="+index+";");
+        nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index);
         mods.Hidden = false;
         cmb.Hidden = false;
-        descLez.Text = "Descrizione: " + Query("SELECT descrizione FROM [Lezioni] WHERE Id="+index+";");;
-        totdurata.Text ="Durata totale: "+ Query("SELECT totore FROM [Lezioni] WHERE Id="+index+";") + " ore";
-        switch ( int.Parse(""+ Query("SELECT modalità FROM [Lezioni] WHERE Id="+index+";")))
+        descLez.Text = "Descrizione: " + Query("SELECT descrizione FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index);;
+        totdurata.Text ="Durata totale: "+ Query("SELECT totore FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index) + " ore";
+        switch ( int.Parse(Query("SELECT modalità FROM [Lezioni] WHERE Modulo="+id+" AND nlez="+index)))
         {
             case 0:cmb.SetValue("In classse");break;
             case 1:cmb.SetValue("Uscita didattica");break;
