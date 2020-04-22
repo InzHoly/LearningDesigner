@@ -19,6 +19,11 @@
             }
 
     }
+
+    protected void RPass(object sender, DirectEventArgs e)
+    {
+        Response.Redirect("RecuperaPassword.aspx");
+    }
 </script>
 
 
@@ -73,6 +78,11 @@
                 
             </Items>
             <Buttons>
+                <ext:HyperlinkButton runat="server" Text="Recupera password">
+                    <Listeners>
+                        <Click OnEvent="RPass"></Click>
+                    </Listeners>
+                </ext:HyperlinkButton>
                 <ext:Button
                     ID="Button1"
                     runat="server"
@@ -87,7 +97,6 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button runat="server" Text="Register" />
-                <ext:Button runat="server" Text="Reset Password" />
             </Buttons>
             
         </ext:Window>
