@@ -24,6 +24,12 @@
     {
         Response.Redirect("RecuperaPassword.aspx");
     }
+
+    protected void register(object sender, DirectEventArgs e)
+    {
+        Response.Redirect("registrazione.aspx");
+        return;       
+    }
 </script>
 
 
@@ -92,6 +98,19 @@
                     >
                     <DirectEvents>
                         <Click OnEvent="Login">
+                                <EventMask ShowMask="true" />
+                            </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button
+                    ID="Button2"
+                    runat="server"
+                    Text="Registrati"
+                    Icon="Accept"
+                    FormBind="true"
+                    >
+                    <DirectEvents>
+                        <Click OnEvent="register">
                                 <EventMask ShowMask="true" />
                             </Click>
                     </DirectEvents>

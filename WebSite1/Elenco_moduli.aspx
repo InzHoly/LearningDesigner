@@ -141,6 +141,7 @@
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = "+id);
 
 
+
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
