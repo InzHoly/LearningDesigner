@@ -315,7 +315,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="leftColumn">Numero Lezioni:
+                    <td class="leftColumn">Numero Lezioni :
                     </td>
                     <td>
                         <ext:Label runat="server"  ID="Modulo_Nlezioni" ></ext:Label>
@@ -404,9 +404,8 @@
         </Items>
     </ext:Window>
     <br />
-    <hr />
-    <!-- riga orizzontale -->
-    <ext:Label runat="server" ID="ciao"></ext:Label>
+    <br />
+    <!--<ext:Label runat="server" ID="ciao"></ext:Label>-->
     <div class="lezione">
         
 
@@ -482,7 +481,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
+                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus" id="piu"></i><span></span></a></li>
                 </ul>
             </div>
         </div>
