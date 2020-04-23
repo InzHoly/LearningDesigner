@@ -7,7 +7,9 @@
 
         String n = txtUsername.Text;
         String p = txtPassword.Text;
-        txtUsername.Text=Query("SELECT password FROM [Utenti] where nome ='" + n + "';");
+        if(n=="" || p=="")
+            X.Msg.Alert("Errore", string.Format("Compila tutti i campi")).Show();
+        else{
             if (Query("SELECT password FROM [Utenti] where nome ='" + n + "';").Equals(p))
             {
                 Session.Add("login",Query("SELECT Id FROM [Utenti] where nome ='" + n + "';"));
@@ -17,7 +19,7 @@
             {
                 X.Msg.Alert("Errore", string.Format("Nome utente o password sbagliata")).Show();
             }
-
+        }
     }
 
     protected void RPass(object sender, DirectEventArgs e)
@@ -28,7 +30,7 @@
     protected void register(object sender, DirectEventArgs e)
     {
         Response.Redirect("registrazione.aspx");
-        return;       
+        return;
     }
 </script>
 
@@ -84,11 +86,19 @@
                 
             </Items>
             <Buttons>
-                <ext:HyperlinkButton runat="server" Text="Recupera password">
+                 <ext:Button
+                    ID="Button3"
+                    runat="server"
+                    Text="Recupera password"
+                    Icon="Accept"
+                    FormBind="true"
+                    >
                     <DirectEvents>
-                        <Click OnEvent="RPass"></Click>
+                        <Click OnEvent="RPass">
+                                <EventMask ShowMask="true" />
+                            </Click>
                     </DirectEvents>
-                </ext:HyperlinkButton>
+                </ext:Button>
                 <ext:Button
                     ID="Button1"
                     runat="server"
@@ -115,7 +125,6 @@
                             </Click>
                     </DirectEvents>
                 </ext:Button>
-                <ext:Button runat="server" Text="Register" />
             </Buttons>
             
         </ext:Window>
