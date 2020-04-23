@@ -13,6 +13,7 @@
         String classe = txtClasse.Text;
         String tag = txtTag.Text;
         String descrizione = txtDescrizione.Text;
+        String values;
         if(pubblica.Pressed == true)
         {
             stato = 1;
@@ -21,7 +22,10 @@
         {
             stato = 0;
         }
+        values = "'" + nome + "','" + prerequisiti + "','" + competenze + "','" + descrizione + "','" + corso + "','" + anno + "','" + tag + "','" + classe + "','" + stato + "'";
 
+        
+        String ris = Querys("INSERT INTO Moduli (nome,prerequisiti,competenze,descrizione,corso,anno_corso,tag,classe,pubblica) VALUES ("+values+");");
     }
 
 </script>

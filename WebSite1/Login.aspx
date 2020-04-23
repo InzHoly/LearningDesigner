@@ -85,9 +85,9 @@
             </Items>
             <Buttons>
                 <ext:HyperlinkButton runat="server" Text="Recupera password">
-                    <Listeners>
+                    <DirectEvents>
                         <Click OnEvent="RPass"></Click>
-                    </Listeners>
+                    </DirectEvents>
                 </ext:HyperlinkButton>
                 <ext:Button
                     ID="Button1"

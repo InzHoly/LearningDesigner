@@ -11,7 +11,7 @@
     protected void Page_Load(object sender, EventArgs p)
     {
 
-        ciao.Text = Query("SELECT * FROM [Moduli] WHERE Id=1;");
+        
 
         d = new Modulo();
         d.setNome("Database");
