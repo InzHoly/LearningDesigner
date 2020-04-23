@@ -130,6 +130,7 @@
         int i = 1;
 
 
+
         Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = 2");
         Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = 2");
         Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id = 2");
@@ -139,6 +140,7 @@
         Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = 2");
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = 2");
         
+
 
         id = int.Parse(Request.Params["id"]);
         Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = "+id);
@@ -326,7 +328,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="leftColumn">Numero Lezioni:
+                    <td class="leftColumn">Numero Lezioni :
                     </td>
                     <td>
                         <ext:Label runat="server"  ID="Modulo_Nlezioni" ></ext:Label>
@@ -415,9 +417,8 @@
         </Items>
     </ext:Window>
     <br />
-    <hr />
-    <!-- riga orizzontale -->
-    <ext:Label runat="server" ID="ciao"></ext:Label>
+    <br />
+    
     <div class="lezione">
         
 
@@ -493,7 +494,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
+                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus" id="piu"></i><span></span></a></li>
                 </ul>
             </div>
         </div>

@@ -19,6 +19,17 @@
             }
 
     }
+
+    protected void RPass(object sender, DirectEventArgs e)
+    {
+        Response.Redirect("RecuperaPassword.aspx");
+    }
+
+    protected void register(object sender, DirectEventArgs e)
+    {
+        Response.Redirect("registrazione.aspx");
+        return;       
+    }
 </script>
 
 
@@ -47,7 +58,7 @@
             Height="200"
             Icon="Lock"
             Title="Login"
-            Draggable="true"
+            Draggable="false"
             Width="500"
             Modal="false"
             BodyPadding="5"
@@ -73,6 +84,11 @@
                 
             </Items>
             <Buttons>
+                <ext:HyperlinkButton runat="server" Text="Recupera password">
+                    <Listeners>
+                        <Click OnEvent="RPass"></Click>
+                    </Listeners>
+                </ext:HyperlinkButton>
                 <ext:Button
                     ID="Button1"
                     runat="server"
@@ -86,11 +102,25 @@
                             </Click>
                     </DirectEvents>
                 </ext:Button>
+                <ext:Button
+                    ID="Button2"
+                    runat="server"
+                    Text="Registrati"
+                    Icon="Accept"
+                    FormBind="true"
+                    >
+                    <DirectEvents>
+                        <Click OnEvent="register">
+                                <EventMask ShowMask="true" />
+                            </Click>
+                    </DirectEvents>
+                </ext:Button>
                 <ext:Button runat="server" Text="Register" />
             </Buttons>
             
         </ext:Window>
        
     </form>
+
 </body>
 </html>
