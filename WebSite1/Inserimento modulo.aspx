@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Inserimento modulo.aspx.cs" Inherits="Inserimento_modulo" %>
 
 <script runat="server">
+    
+    
+
 
     protected void inserisci(object sender, DirectEventArgs e)
     {
@@ -22,10 +25,12 @@
         {
             stato = 0;
         }
-        values = "'" + nome + "','" + prerequisiti + "','" + competenze + "','" + descrizione + "','" + corso + "','" + anno + "','" + tag + "','" + classe + "','" + stato + "'";
+        String u=Session["login"].ToString();
 
-        
-        String ris = Querys("INSERT INTO Moduli (nome,prerequisiti,competenze,descrizione,corso,anno_corso,tag,classe,pubblica) VALUES ("+values+");");
+        values = "'" + nome + "','" + prerequisiti + "','" + competenze + "','" + descrizione + "','" + corso + "','" + anno + "','" + tag + "','" + classe + "','" + stato + "','" + u + "'";
+
+
+        String ris = Querys("INSERT INTO Moduli (nome,prerequisiti,competenze,descrizione,corso,anno_corso,tag,classe,pubblica,idUtente) VALUES ("+values+");");
     }
 
 </script>
@@ -50,14 +55,20 @@
     </style>
 </head>
 <body>
-     <form runat="server">
-        <ext:ResourceManager runat="server" />
-
+    
+    <ext:ResourceManager runat="server" />
+     <ext:formPanel runat="server"   AlignTarget="center" >
+         <LayoutConfig>
+            <ext:VBoxLayoutConfig Align="Center" Pack="Center"  />
+        </LayoutConfig>
+         <Items>
         <ext:Panel
+            AlignTarget="center"
             runat="server"
-            Layout="Fit"
             Width="1000"
-            Height="500">
+            Height="500"
+            >
+            
             <Items>
                 <ext:FormPanel
                     ID="FormPanel1"
@@ -103,6 +114,7 @@
                                 <ext:TextField runat="server" FieldLabel="Tag" ID="txtTag" AnchorHorizontal="92%" />
                                 <ext:TextField runat="server" FieldLabel="Classe" ID="txtClasse" AnchorHorizontal="92%" />
                                 <ext:TextArea runat="server" FieldLabel="Descrizione" ID="txtDescrizione" AnchorHorizontal="92%" />
+                                
                             </Items>
                         </ext:Panel>
                     </Items>
@@ -133,7 +145,10 @@
                 </ext:Button>
                 <ext:Button runat="server" Text="Cancel" />
             </Buttons>
+
         </ext:Panel>
-    </form>
+         </Items>
+    </ext:formPanel>
+    <ext:Label runat="server" ID="prova"></ext:Label>
 </body>
 </html>

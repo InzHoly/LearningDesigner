@@ -60,9 +60,9 @@
 
     }
 
-    protected void gotoModulo(object sender, EventArgs e)
+    protected void AggiungiModulo(object sender, EventArgs e)
     {
-
+        Response.Redirect("Inserimento modulo.aspx");
     }
 
     public class Modul
@@ -147,6 +147,15 @@
                     </Columns>
                 </ColumnModel>
             </ext:GridPanel>
+            <ext:ButtonGroup runat="server">
+                <Buttons>
+                    <ext:Button runat="server" Text="Aggiungi">
+                        <DirectEvents>
+                            <Click OnEvent="AggiungiModulo"></Click>
+                        </DirectEvents>
+                    </ext:Button>
+                </Buttons>
+            </ext:ButtonGroup>
           </Items>
     </ext:Viewport>
 </body>
