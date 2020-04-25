@@ -20,13 +20,11 @@ public partial class _Default : System.Web.UI.Page
         if (Query("SELECT email FROM [Utenti] where nome ='"+n+"' and password = '"+p+"';").Equals(""))
             user.Text = "nome utente sbaliato";
         else
-        {
-             Session.Add("login", Query("SELECT Id FROM [Utenti] where nome ='" + n + "';"));
-             Response.Redirect("Moduli-dopologin.aspx");
-        }
-
+            {
+                Session.Add("login",Query("SELECT Id FROM [Utenti] where nome ='"+n+"'"));
+                Response.Redirect("Moduli-dopologin.aspx");
+            }
     }
-
     public String Query(String sql)
     {
 

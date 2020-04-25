@@ -15,9 +15,8 @@
 </head>
 <body>
     <ext:ResourceManager runat="server" />
-     <div style="position:absolute; top:190px; left:120px">
-        <img  src="Immagini/logo.PNG" height="400" width="470" />
-
+    <div style="position:absolute"; top:190px; left:120px">
+        <img src="Immagini/logo.PNG" height="400" width="400" />    
     </div>
     <ext:Viewport runat="server">
         <LayoutConfig>
@@ -49,10 +48,17 @@
                         InputType="Password"
                         ID="password"/>
 
-                     <ext:Hyperlink
+                    <ext:Hyperlink
                         runat="server"
-                        NavigateUrl="registrazione.aspx"
+                        NavigateUrl="Registrazione.aspx"
                         Text="Registrati qui!"
+                        Target="_blank"
+                        />
+
+                    <ext:Hyperlink
+                        runat="server"
+                        NavigateUrl="Recuperapassword.aspx"
+                        Text="Hai dimenticato la password?"
                         Target="_blank"
                         />
                 </Items>
