@@ -14,7 +14,7 @@
     <link href="/resources/css/examples.css" rel="stylesheet" />
 </head>
 <body>
-    <ext:ResourceManager runat="server" />
+    <ext:ResourceManager runat="server " />
     <div style="position:absolute"; top:190px; left:120px">
         <img src="Immagini/logo.PNG" height="400" width="400" />    
     </div>
