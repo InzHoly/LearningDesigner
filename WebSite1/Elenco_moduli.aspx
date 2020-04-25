@@ -11,7 +11,7 @@
     protected void Page_Load(object sender, EventArgs p)
     {
 
-        
+
 
         d = new Modulo();
         d.setNome("Database");
@@ -139,10 +139,10 @@
         Modulo_Descrizione.Text = Query("SELECT descrizione FROM Moduli WHERE Id = 2");
         Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = 2");
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = 2");
-        
 
-
-        id = int.Parse(Request.Params["id"]);
+        id = 1;
+        if(Request.Params["id"]!=null)//perchè altrimenti cazzo crasha 
+            id = int.Parse(Request.Params["id"]);
         Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = "+id);
         Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = "+id);
         Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id ="+id);
@@ -167,7 +167,7 @@
 
     protected void bottone(object sender, DirectEventArgs e)
     {
-        
+
         String txt = "";
         String nom = "n";
         int i = 1;
@@ -195,7 +195,7 @@
         }
         cmb.Hidden = false;
         att = lez;
-        
+
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;

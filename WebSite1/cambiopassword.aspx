@@ -6,11 +6,15 @@
         if(newpassword.Text!="" && newpassword2.Text!="" && oldpassword.Text!="")
             if (newpassword.Text.Equals(newpassword2.Text))
             {
-                Query("update utenti set password = '" + newpassword.Text + "' where id = '" + Session["login"] + "'");
-                Response.Redirect("moduli-dopologin.aspx");
+                if(Query("select password from utenti where id = "+Session["login"]).Equals(oldpassword.Text)){
+                    Query("update utenti set password = '" + newpassword.Text + "' where id = '" + Session["login"] + "' and password = '"+oldpassword.Text+"'");
+                    Response.Redirect("moduli-dopologin.aspx");
+                }
+                else
+                    X.Msg.Alert("Errore", string.Format("La vecchia password non è corretta")).Show();
             }
             else
-             X.Msg.Alert("Errore", string.Format("C'è un errore nelle password, riprova")).Show();
+                X.Msg.Alert("Errore", string.Format("C'è un errore nelle password, riprova")).Show();
         else
             X.Msg.Alert("Errore", string.Format("Devi riempire tutti i campi")).Show();
     }
