@@ -84,13 +84,6 @@ h2 {
                 background-color: #5fa2dd;
             }
 
-#piu {
-    padding-top: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 8px;
-}
-
 .active {
     background-color: darkblue;
 }
@@ -108,7 +101,7 @@ table {
 
 .leftColumn {
     text-align: right;
-    width: 110px;
+    width: 100px;
     font-weight: bold;
 }
 
@@ -125,7 +118,7 @@ table {
 
     .text1 {
         left: 13px;
-        line-height: 15px;
+        line-height: 20px;
         width: 60%;
     }
 
@@ -174,7 +167,7 @@ table {
     .hvr-ripple-out:before {
         content: '';
         position: absolute;
-        border: #6495ed solid 2px;
+        border: #5fa2dd solid 2px;
         top: 0;
         right: 0;
         bottom: 0;

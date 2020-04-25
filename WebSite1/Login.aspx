@@ -7,9 +7,7 @@
 
         String n = txtUsername.Text;
         String p = txtPassword.Text;
-        if(n=="" || p=="")
-            X.Msg.Alert("Errore", string.Format("Compila tutti i campi")).Show();
-        else{
+        txtUsername.Text=Query("SELECT password FROM [Utenti] where nome ='" + n + "';");
             if (Query("SELECT password FROM [Utenti] where nome ='" + n + "';").Equals(p))
             {
                 Session.Add("login",Query("SELECT Id FROM [Utenti] where nome ='" + n + "';"));
@@ -19,18 +17,7 @@
             {
                 X.Msg.Alert("Errore", string.Format("Nome utente o password sbagliata")).Show();
             }
-        }
-    }
 
-    protected void RPass(object sender, DirectEventArgs e)
-    {
-        Response.Redirect("RecuperaPassword.aspx");
-    }
-
-    protected void register(object sender, DirectEventArgs e)
-    {
-        Response.Redirect("registrazione.aspx");
-        return;
     }
 </script>
 
@@ -60,7 +47,7 @@
             Height="200"
             Icon="Lock"
             Title="Login"
-            Draggable="false"
+            Draggable="true"
             Width="500"
             Modal="false"
             BodyPadding="5"
@@ -86,19 +73,6 @@
                 
             </Items>
             <Buttons>
-                 <ext:Button
-                    ID="Button3"
-                    runat="server"
-                    Text="Recupera password"
-                    Icon="Accept"
-                    FormBind="true"
-                    >
-                    <DirectEvents>
-                        <Click OnEvent="RPass">
-                                <EventMask ShowMask="true" />
-                            </Click>
-                    </DirectEvents>
-                </ext:Button>
                 <ext:Button
                     ID="Button1"
                     runat="server"
@@ -112,24 +86,11 @@
                             </Click>
                     </DirectEvents>
                 </ext:Button>
-                <ext:Button
-                    ID="Button2"
-                    runat="server"
-                    Text="Registrati"
-                    Icon="Accept"
-                    FormBind="true"
-                    >
-                    <DirectEvents>
-                        <Click OnEvent="register">
-                                <EventMask ShowMask="true" />
-                            </Click>
-                    </DirectEvents>
-                </ext:Button>
+                <ext:Button runat="server" Text="Register" />
             </Buttons>
             
         </ext:Window>
        
     </form>
-
 </body>
 </html>

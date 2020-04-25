@@ -34,7 +34,7 @@
                         ID="email"/>
                 </Items>
                 <Buttons>
-                   <ext:Button ID="extBtn1" runat="server" Text="Manda email">
+                   <ext:Button ID="extBtn1" runat="server" Text="Login">
                         <DirectEvents>
                             <Click OnEvent="Reset">
                                 <EventMask ShowMask="true" />
