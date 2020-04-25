@@ -60,10 +60,20 @@
 
     }
 
-    protected void gotoModulo(object sender, EventArgs e)
-    {
 
+    protected void AggiungiModulo(object sender, EventArgs e)
+    {
+        Response.Redirect("Inserimento modulo.aspx");
     }
+
+    protected void cambioPassword(object sender, EventArgs e)
+    {
+        Response.Redirect("cambiopassword.aspx");
+        return;
+    }
+
+   
+    
 
     public class Modul
     {
@@ -102,9 +112,9 @@
 </head>
     
 <body>
-    
-
+   
     <ext:ResourceManager runat="server" />
+
 
     <ext:Store ID="Store1" runat="server">
         <Model>
@@ -147,7 +157,35 @@
                     </Columns>
                 </ColumnModel>
             </ext:GridPanel>
+
+            <ext:ButtonGroup runat="server">
+                <Buttons>
+                    <ext:Button runat="server" Text="Aggiungi">
+                        <DirectEvents>
+                            <Click OnEvent="AggiungiModulo"></Click>
+                        </DirectEvents>
+                    </ext:Button>
+                </Buttons>
+            </ext:ButtonGroup>
+
+             
+        <ext:Button
+            ID="Button1"
+            runat="server"
+            Text="Cambia la tua password"
+            Icon="Accept"
+            FormBind="true"
+            >
+            <DirectEvents>
+                <Click OnEvent="cambioPassword">
+                        <EventMask ShowMask="true" />
+                    </Click>
+            </DirectEvents>
+        </ext:Button>
+
           </Items>
+
     </ext:Viewport>
+    
 </body>
 </html>

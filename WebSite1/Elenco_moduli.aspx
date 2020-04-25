@@ -7,10 +7,11 @@
     Modulo d;
     Modulo s;
     Lezione att= new Lezione();
+    int id;
     protected void Page_Load(object sender, EventArgs p)
     {
 
-        ciao.Text = Query("SELECT * FROM [Moduli] WHERE Id=1;");
+
 
         d = new Modulo();
         d.setNome("Database");
@@ -128,6 +129,8 @@
         att.addAttivita(at4);
         int i = 1;
 
+
+
         Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = 2");
         Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = 2");
         Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id = 2");
@@ -136,14 +139,27 @@
         Modulo_Descrizione.Text = Query("SELECT descrizione FROM Moduli WHERE Id = 2");
         Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = 2");
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = 2");
-        
+
+        id = 1;
+        if(Request.Params["id"]!=null)//perchè altrimenti cazzo crasha 
+            id = int.Parse(Request.Params["id"]);
+        Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = "+id);
+        Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = "+id);
+        Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id ="+id);
+        Modulo_Classe.Text = Query("SELECT classe FROM Moduli WHERE Id = "+id);
+        Modulo_Corso.Text = Query("SELECT corso FROM Moduli WHERE Id = "+id);
+        Modulo_Descrizione.Text = Query("SELECT descrizione FROM Moduli WHERE Id = "+id);
+        Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = "+id);
+        Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = "+id);
 
 
-        lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
-        lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
-        lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
-        lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
-        lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=2 and nlez="+i+";");i++;
+
+
+        lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
+        lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
+        lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
+        lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
+        lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
 
     }
 
@@ -166,12 +182,12 @@
         int index = int.Parse(txt)+1;
 
         Lezione lez = s.getLezione(index-1);
-        nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Id="+index+";");
+        nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index);
         mods.Hidden = false;
         cmb.Hidden = false;
-        descLez.Text = "Descrizione: " + Query("SELECT descrizione FROM [Lezioni] WHERE Id="+index+";");;
-        totdurata.Text ="Durata totale: "+ Query("SELECT totore FROM [Lezioni] WHERE Id="+index+";") + " ore";
-        switch ( int.Parse(""+ Query("SELECT modalità FROM [Lezioni] WHERE Id="+index+";")))
+        descLez.Text = "Descrizione: " + Query("SELECT descrizione FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index);;
+        totdurata.Text ="Durata totale: "+ Query("SELECT totore FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index) + " ore";
+        switch ( int.Parse(Query("SELECT modalità FROM [Lezioni] WHERE Modulo="+id+" AND nlez="+index)))
         {
             case 0:cmb.SetValue("In classse");break;
             case 1:cmb.SetValue("Uscita didattica");break;
@@ -179,7 +195,7 @@
         }
         cmb.Hidden = false;
         att = lez;
-        
+
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -312,7 +328,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="leftColumn">Numero Lezioni:
+                    <td class="leftColumn">Numero Lezioni :
                     </td>
                     <td>
                         <ext:Label runat="server"  ID="Modulo_Nlezioni" ></ext:Label>
@@ -401,9 +417,8 @@
         </Items>
     </ext:Window>
     <br />
-    <hr />
-    <!-- riga orizzontale -->
-    <ext:Label runat="server" ID="ciao"></ext:Label>
+    <br />
+    
     <div class="lezione">
         
 
@@ -479,7 +494,7 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus"></i><span></span></a></li>
+                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus" id="piu"></i><span></span></a></li>
                 </ul>
             </div>
         </div>
