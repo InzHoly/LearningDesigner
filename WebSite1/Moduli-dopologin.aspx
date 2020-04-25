@@ -62,6 +62,9 @@
 
 
     protected void AggiungiModulo(object sender, EventArgs e)
+    {
+        Response.Redirect("Inserimento modulo.aspx");
+    }
 
     protected void cambioPassword(object sender, EventArgs e)
     {
@@ -69,11 +72,8 @@
         return;
     }
 
-    protected void gotoModulo(object sender, EventArgs e)
-
-    {
-        Response.Redirect("Inserimento modulo.aspx");
-    }
+   
+    
 
     public class Modul
     {

@@ -143,7 +143,7 @@
                         </Click>
                     </DirectEvents>
                 </ext:Button>
-                <ext:Button runat="server" Text="Cancel" />
+                
             </Buttons>
 
         </ext:Panel>
