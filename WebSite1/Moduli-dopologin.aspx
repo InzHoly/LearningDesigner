@@ -11,6 +11,7 @@
             String u=Session["login"].ToString();
             GridPanel1.Title = "Moduli di "+ Querys("SELECT nome FROM Utenti WHERE Id = " + u + ";");
 
+
             String moduli = Query("SELECT Id FROM Moduli WHERE idUtente = " + u + ";");
             moduli= moduli.Remove(moduli.Length - 1);
             String[] lista = moduli.Split('/');
@@ -63,7 +64,7 @@
 
     protected void AggiungiModulo(object sender, EventArgs e)
     {
-        Response.Redirect("Inserimento modulo.aspx");
+        Response.Redirect("Inserimento_modulo.aspx");
     }
 
     protected void cambioPassword(object sender, EventArgs e)

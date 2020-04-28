@@ -494,7 +494,9 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    <li><a href="#" class="hvr-ripple-out"><i class="fa fa-plus" id="piu"></i><span></span></a></li>
+                    
+                       
+                    <li><a href="inserimento_lezione.aspx?modulo=<%=id %>" class="hvr-ripple-out"><i class="fa fa-plus" id="piu"></i><span></span></a></li>
                 </ul>
             </div>
         </div>
