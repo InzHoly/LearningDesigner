@@ -8,6 +8,7 @@
     Modulo s;
     Lezione att= new Lezione();
     int id;
+    int nlezioni;
     protected void Page_Load(object sender, EventArgs p)
     {
         Attivita at1 = new Attivita();
@@ -40,7 +41,9 @@
         att.addAttivita(at2);
         att.addAttivita(at3);
         att.addAttivita(at4);
-        int i = 1;
+        if(Session["lastlez"] == null)
+            Session["lastlez"] = 5;
+        int i = (int)Session["lastlez"]-4;
 
 
 
@@ -66,8 +69,8 @@
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = "+id);
 
 
-
-
+        nlezioni = int.Parse(Query("SELECT count(*) FROM [Lezioni] group by Modulo having Modulo = " + id + ";"));
+        
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
@@ -76,7 +79,29 @@
 
     }
 
+    protected void sposta(object sender, DirectEventArgs e)
+    {
+        String dir = e.ExtraParams.GetParameter("dir").Value;
+        int par = (int)Session["lastlez"];
+        if (dir.Equals("d") && !(par >= nlezioni))
+        {
+            par++;
+            lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par++;
+            lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par++;
+            lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par++;
+            lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par++;
+            lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");Session["lastlez"] = par;
+        }
+        if(dir.Equals("s") && par > 5){
+            par -= 5;
+            lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par--;
+            lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par--;
+            lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par--;
+            lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par--;
+            lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par += 4; Session["lastlez"] = par;
+        }
 
+    }
 
     protected void bottone(object sender, DirectEventArgs e)
     {
@@ -344,6 +369,19 @@
                 <ul>
                     <li><a href="#">
                         <span>
+                            <ext:Label runat="server" Text="<" ID="sinistra" Cls="hvr-ripple-out" Height="30px" Width="30px">
+                                <DirectEvents>
+                                    <Tap OnEvent="sposta">
+                                        <ExtraParams>
+                                            <ext:Parameter Name="dir" Value="s" Mode="Value" />
+                                        </ExtraParams>
+                                    </Tap>
+                                </DirectEvents>
+                            </ext:Label>
+                        </span></a>
+                    </li>
+                    <li><a href="#">
+                        <span>
                             <ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
                                     <Tap OnEvent="bottone">
@@ -407,8 +445,19 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    
-                       
+                    <li><a href="#">
+                        <span>
+                            <ext:Label runat="server" Text=">" ID="destra" Cls="hvr-ripple-out" Height="30px" Width="30px">
+                                <DirectEvents>
+                                    <Tap OnEvent="sposta">
+                                        <ExtraParams>
+                                            <ext:Parameter Name="dir" Value="d" Mode="Value" />
+                                        </ExtraParams>
+                                    </Tap>
+                                </DirectEvents>
+                            </ext:Label>
+                        </span></a>
+                    </li>
                     <li><a href="inserimento_lezione.aspx?modulo=<%=id %>" class="hvr-ripple-out"><i class="fa fa-plus" id="piu"></i><span></span></a></li>
                 </ul>
             </div>
