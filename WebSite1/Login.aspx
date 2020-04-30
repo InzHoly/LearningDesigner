@@ -50,7 +50,7 @@
         <img  src="Immagini/logo.PNG" height="400" width="470" />
 
     </div>
-   <form runat="server">
+   <form runat="server" >
        
         <ext:Window
             ID="Window1"
