@@ -4,15 +4,18 @@
 
 <script runat="server">
 
-    Modulo d;
-    Modulo s;
-    Lezione att= new Lezione();
-    int astro;
-    int idlez;
-    int id;
-    int nlezioni;
-    protected void Page_Load(object sender, EventArgs p)
-    {
+        Modulo d;
+        Modulo s;
+        Lezione att= new Lezione();
+        int astro;
+        int idlez;
+        int id;
+        int nlezioni;
+        protected void Page_Load(object sender, EventArgs p)
+        {
+
+            Session["modid"] = int.Parse(Request.QueryString["id"]);
+
         Attivita at1 = new Attivita();
         at1.setDescrizione("cartina europa nel 1939");
         at1.setDurata(3);
@@ -119,9 +122,9 @@
             i++;
         } while (txt == "");
 
-        int index = int.Parse(txt)+1;
+        int index = int.Parse(txt)+1+(int)Session["lastlez"]-5;
 
-        Lezione lez = s.getLezione(index-1);
+        //Lezione lez = s.getLezione(index-1);
         nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index);
         mods.Hidden = false;
         cmb.Hidden = false;
@@ -134,12 +137,12 @@
             case 2:cmb.SetValue("Laboratorio");break;
         }
         cmb.Hidden = false;
-        att = lez;
+        //att = lez;
         idlez = int.Parse(Query("SELECT id FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index));
         String mostraidlez = "" + idlez;
         astro = idlez;
         Session["idlez"] = ""+idlez;
-        X.Msg.Alert(mostraidlez, mostraidlez).Show();
+        //X.Msg.Alert(mostraidlez, mostraidlez).Show();
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -183,6 +186,12 @@
         //X.Msg.Alert("Id da passare",""+iddellalez).Show();
         Response.Redirect("Inserimento_attivita.aspx?Lezione=" +iddellalez );
     }
+    protected void ModificaAtt(object sender, DirectEventArgs e)//wip
+    {
+        //String iddellAtt = (String)Session["idAtt"];
+        //X.Msg.Alert("Id da passare",""+iddellalez).Show();
+        //Response.Redirect("Inserimento_attivita.aspx?Lezione=" +iddellalez );
+    }
 </script>
 
 
@@ -191,6 +200,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link href="Stile.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -221,7 +231,7 @@
     </script>
 
     <ext:ResourceManager runat="server" />
-    <h1 class="header">Introduzione ai Database</h1>
+    <h1 class="header"><a href="Modifica_modulo.aspx">Modifica il modulo</a></h1>
     <div class="details">
         <div class="text1">
             <table>
@@ -287,6 +297,7 @@
                 </tr>
             </table>
         </div>
+        
         <div id="piechart" class="chart"></div>
     </div>
 
@@ -372,7 +383,11 @@
                     <Click OnEvent="AggiungiAtt"></Click>
                 </DirectEvents>
             </ext:Button>
-
+            <ext:Button runat="server" ID="Button2" Icon="ApplicationEdit">
+                <DirectEvents>
+                    <Click OnEvent="ModificaAtt"></Click>
+                </DirectEvents>
+            </ext:Button>
         </Buttons>
     </ext:Window>
     <br />
@@ -480,6 +495,7 @@
                         </span></a>
                     </li>
                     <li><a href="inserimento_lezione.aspx?modulo=<%=id %>" class="hvr-ripple-out"><i class="fa fa-plus" id="piu"></i><span></span></a></li>
+                    <li><a href="modifica_lezione.aspx?lezione=<%=(String)Session["idlez"]%>" class="hvr-ripple-out"><i class="material-icons" id="piu2">mode_edit</i><span></span></a></li>
                 </ul>
             </div>
         </div>
