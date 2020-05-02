@@ -10,90 +10,9 @@
     int astro;
     int idlez;
     int id;
+    int nlezioni;
     protected void Page_Load(object sender, EventArgs p)
     {
-
-
-
-        d = new Modulo();
-        d.setNome("Database");
-        d.setAnnoScolastico("2019/2020");
-        d.setClasse("5IA");
-        d.setCompetenze("Progettazione Concettuale, Logica e Fisica");
-        d.setCorso("Informatica");
-        d.setDescrizione("Corso di base sui database, dalla progettazione concettuale alla progettazione fisica");
-        d.setDurata(10);
-        d.setIDAutore(3);
-        d.setNlezioni(10);
-        d.setObbiettivo("Progettazione Database");
-        d.setTag("Informatica");
-
-
-
-        Modulo f = new Modulo();
-        f.setNome("Decandentismo");
-        f.setAnnoScolastico("2019/2020");
-        f.setClasse("4LC");
-        f.setCompetenze("Parafrasi opere decadenti, autori principali, opere fondamentali");
-        f.setCorso("Italiano");
-        f.setDescrizione("Simbolismo francese, poeti maledetti, estetismo, Decadentismo in Italia, D'annunzio, Pascoli ");
-        f.setDurata(7);
-        f.setIDAutore(4);
-        f.setNlezioni(7);
-        f.setObbiettivo("Apprendimento del decadentismo");
-        f.setTag("Italiano");
-
-        s = new Modulo();
-        s.setNome("Seconda guerra mondiale");
-        s.setAnnoScolastico("2019/2020");
-        s.setClasse("8SC");
-        s.setCompetenze("conoscere la storia, sapere perchè amos è inferiore, hitler");
-        s.setCorso("Storia");
-        s.setDescrizione("Guerra lampo, resistenze, collaborazionisti, fine della guerra");
-        s.setDurata(7);
-        s.setIDAutore(4);
-        s.setNlezioni(7);
-        s.setObbiettivo("Apprendimento della seconda guerra mondiale");
-        s.setTag("Hitler");
-
-        Lezione a = new Lezione();
-        a.setNome("1939, l'inizio");
-        a.setDescrizione("Dopo che la Germania invase la Polonia, Francia e Gran Bretagna dichiararono guerra a Hitler");
-        a.setTotore(3);
-        a.setModalita(0);
-
-        Lezione b = new Lezione();
-        b.setNome("1940, La caduta della Francia");
-        b.setDescrizione("Passando per il belgio le truppe naziste dilagano in francia e invadono Parigi, gli alleati sono costretti a ritirarsi a Dunquerque");
-        b.setTotore(3);
-        b.setModalita(1);
-
-        Lezione c = new Lezione();
-        c.setNome("1941, operazione Barbarossa");
-        c.setDescrizione("Dopo che la Luftwaffe non riuscì a distruggere la RAF, Hitler decide di cominciare l'invasione dell'unione sovietica per conquistare lo spazio vitale a est");
-        c.setTotore(3);
-        c.setModalita(2);
-
-        Lezione e = new Lezione();
-        e.setNome("1942, Battaglia isole Midway");
-        e.setDescrizione("Nella decisiva battaglia delle isole Midway gli americani riuscirono a ribaltare le sorti della battaglia nel pacifico contro i giapponesi");
-        e.setTotore(3);
-        e.setModalita(0);
-
-        Lezione g = new Lezione();
-        g.setNome("1943, Sbarco in Sicilia");
-        g.setDescrizione("Dopo aver ottenuto il dominio del Mediterraneo, gli alleati sbarcano in Sicilia dove vengono accolti dalla popolazione come dei salvatori");
-        g.setTotore(3);
-        g.setModalita(1);
-
-
-        s.addLezione(a);
-        s.addLezione(b);
-        s.addLezione(c);
-        s.addLezione(e);
-        s.addLezione(g);
-
-
         Attivita at1 = new Attivita();
         at1.setDescrizione("cartina europa nel 1939");
         at1.setDurata(3);
@@ -113,11 +32,6 @@
         at4.setDescrizione("Lettura di un documento sulle umilianti condizioni di resa della Francia");
         at4.setDurata(1);
         at4.setTipo(4);
-        //Mod1.Text= d.getNome();
-        a.addAttivita(at1);
-        a.addAttivita(at2);
-        a.addAttivita(at3);
-        a.addAttivita(at4);
 
 
         att.setNome("1939, l'inizio");
@@ -129,7 +43,9 @@
         att.addAttivita(at2);
         att.addAttivita(at3);
         att.addAttivita(at4);
-        int i = 1;
+        if(Session["lastlez"] == null)
+            Session["lastlez"] = 5;
+        int i = (int)Session["lastlez"]-4;
 
 
 
@@ -155,8 +71,8 @@
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = "+id);
 
 
-
-
+        nlezioni = int.Parse(Query("SELECT count(*) FROM [Lezioni] group by Modulo having Modulo = " + id + ";"));
+        
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
@@ -165,7 +81,29 @@
 
     }
 
+    protected void sposta(object sender, DirectEventArgs e)
+    {
+        String dir = e.ExtraParams.GetParameter("dir").Value;
+        int par = (int)Session["lastlez"];
+        if (dir.Equals("d") && !(par >= nlezioni))
+        {
+            par++;
+            lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par++;
+            lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par++;
+            lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par++;
+            lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par++;
+            lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");Session["lastlez"] = par;
+        }
+        if(dir.Equals("s") && par > 5){
+            par -= 5;
+            lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par--;
+            lez4.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par--;
+            lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par--;
+            lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par--;
+            lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+par+";");par += 4; Session["lastlez"] = par;
+        }
 
+    }
 
     protected void bottone(object sender, DirectEventArgs e)
     {
@@ -452,6 +390,19 @@
                 <ul>
                     <li><a href="#">
                         <span>
+                            <ext:Label runat="server" Text="<" ID="sinistra" Cls="hvr-ripple-out" Height="30px" Width="30px">
+                                <DirectEvents>
+                                    <Tap OnEvent="sposta">
+                                        <ExtraParams>
+                                            <ext:Parameter Name="dir" Value="s" Mode="Value" />
+                                        </ExtraParams>
+                                    </Tap>
+                                </DirectEvents>
+                            </ext:Label>
+                        </span></a>
+                    </li>
+                    <li><a href="#">
+                        <span>
                             <ext:Label runat="server" ID="lez1" Cls="hvr-ripple-out" Height="30px" Width="180px">
                                 <DirectEvents>
                                     <Tap OnEvent="bottone">
@@ -515,8 +466,19 @@
                             </ext:Label>
                         </span></a>
                     </li>
-                    
-                       
+                    <li><a href="#">
+                        <span>
+                            <ext:Label runat="server" Text=">" ID="destra" Cls="hvr-ripple-out" Height="30px" Width="30px">
+                                <DirectEvents>
+                                    <Tap OnEvent="sposta">
+                                        <ExtraParams>
+                                            <ext:Parameter Name="dir" Value="d" Mode="Value" />
+                                        </ExtraParams>
+                                    </Tap>
+                                </DirectEvents>
+                            </ext:Label>
+                        </span></a>
+                    </li>
                     <li><a href="inserimento_lezione.aspx?modulo=<%=id %>" class="hvr-ripple-out"><i class="fa fa-plus" id="piu"></i><span></span></a></li>
                 </ul>
             </div>

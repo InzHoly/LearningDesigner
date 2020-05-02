@@ -50,8 +50,8 @@ h2 {
 }
 
 .menu {
-    display: inline-block;
     justify-content: center;
+    text-align: center;
 }
 
     .menu ul {
@@ -61,7 +61,6 @@ h2 {
         overflow: hidden;
         background-color: #6495ed;
         display: inline-block;
-        left: 15%;
     }
 
     .menu ul li {
