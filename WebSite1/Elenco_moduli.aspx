@@ -7,6 +7,8 @@
     Modulo d;
     Modulo s;
     Lezione att= new Lezione();
+    int astro;
+    int idlez;
     int id;
     protected void Page_Load(object sender, EventArgs p)
     {
@@ -195,7 +197,11 @@
         }
         cmb.Hidden = false;
         att = lez;
-
+        idlez = int.Parse(Query("SELECT id FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index));
+        String mostraidlez = "" + idlez;
+        astro = idlez;
+        Session["idlez"] = ""+idlez;
+        X.Msg.Alert(mostraidlez, mostraidlez).Show();
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -232,6 +238,13 @@
         Tipo.Text = "Tipo: " + tipi;
     }
 
+
+    protected void AggiungiAtt(object sender, DirectEventArgs e)
+    {
+        String iddellalez = (String)Session["idlez"];
+        //X.Msg.Alert("Id da passare",""+iddellalez).Show();
+        Response.Redirect("Inserimento_attivita.aspx?Lezione=" +iddellalez );
+    }
 </script>
 
 
@@ -415,6 +428,14 @@
             </ext:Container>
             
         </Items>
+        <Buttons>
+            <ext:Button runat="server" ID="bottoneadatt" Icon="Add">
+                <DirectEvents>
+                    <Click OnEvent="AggiungiAtt"></Click>
+                </DirectEvents>
+            </ext:Button>
+
+        </Buttons>
     </ext:Window>
     <br />
     <br />
