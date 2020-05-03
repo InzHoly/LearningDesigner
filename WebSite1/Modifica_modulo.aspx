@@ -2,18 +2,34 @@
 
 <script runat="server">
 
+    Boolean firstLoad = true;
+
     protected void Page_Load(object sender, EventArgs p)
     {
-        int modid = (int)Session["modid"];
-        txtNome.Text = Querys("Select nome from [Moduli] where id = " + Session["modid"]);
-        txtPrerequisiti.Text = Querys("Select prerequisiti from [Moduli] where id = " + Session["modid"]);
-        txtCompetenze.Text = Querys("Select competenze from [Moduli] where id = " + Session["modid"]);
-        txtAnno.Text = Querys("Select anno_corso from [Moduli] where id = " + Session["modid"]);
-        txtCorso.Text = Querys("Select corso from [Moduli] where id = " + Session["modid"]);
-        txtClasse.Text = Querys("Select classe from [Moduli] where id = " + Session["modid"]);
-        txtTag.Text = Querys("Select tag from [Moduli] where id = " + Session["modid"]);
-        txtDescrizione.Text = Querys("Select descrizione from [Moduli] where id = " + Session["modid"]);
-
+        if (firstLoad)
+        {
+            int modid = (int)Session["modid"];
+            txtNome.Text = Querys("Select nome from [Moduli] where id = " + Session["modid"]);
+            txtPrerequisiti.Text = Querys("Select prerequisiti from [Moduli] where id = " + Session["modid"]);
+            txtCompetenze.Text = Querys("Select competenze from [Moduli] where id = " + Session["modid"]);
+            txtAnno.Text = Querys("Select anno_corso from [Moduli] where id = " + Session["modid"]);
+            txtCorso.Text = Querys("Select corso from [Moduli] where id = " + Session["modid"]);
+            txtClasse.Text = Querys("Select classe from [Moduli] where id = " + Session["modid"]);
+            txtTag.Text = Querys("Select tag from [Moduli] where id = " + Session["modid"]);
+            txtDescrizione.Text = Querys("Select descrizione from [Moduli] where id = " + Session["modid"]);
+            if (Querys("Select pubblica from [Moduli] where id = " + Session["modid"]).Equals(""+1))
+            {
+                pubblica.Pressed = true;
+                privata.Pressed = false;
+            }
+            else
+            {
+                pubblica.Pressed = false;
+                privata.Pressed = true;
+            }
+            firstLoad = false;
+        }
+        
     }
 
     protected void salva(object sender, DirectEventArgs e)
@@ -27,7 +43,6 @@
         String classe = txtClasse.Text;
         String tag = txtTag.Text;
         String descrizione = txtDescrizione.Text;
-        String values;
         if(pubblica.Pressed == true)
         {
             stato = 1;
@@ -37,7 +52,7 @@
             stato = 0;
         }
         int u=int.Parse(Session["login"].ToString());
-
+        //X.Msg.Alert("Test",nome + " - " + prerequisiti + " - " + competenze + " - " + anno + " - " + corso + " - " + classe + " - " + tag + " - " + descrizione + " - " + stato + " - " + u).Show();
         int ris = Aggiornamento(nome, prerequisiti, competenze, anno, corso, classe, tag, descrizione, stato, u);
         Response.Redirect("Moduli-dopologin.aspx");
     }

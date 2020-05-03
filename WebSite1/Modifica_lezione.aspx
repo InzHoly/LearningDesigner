@@ -2,14 +2,19 @@
 
 <script runat="server">
 
-
+    Boolean firstLoad = true;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        txtNome.Text = Querys("Select nome from [Lezioni] where id = " + Session["idlez"]);
-        txtOre.Text = Querys("Select totore from [Lezioni] where id = " + Session["idlez"]);
-        txtDescrizione.Text = Querys("Select descrizione from [Lezioni] where id = " + Session["idlez"]);
-        cmb.SetValue(Querys("Select modalità from [Lezioni] where id = " + Session["idlez"]));
+        if (firstLoad)
+        {
+            txtNome.Text = Querys("Select nome from [Lezioni] where id = " + Session["idlez"]);
+            txtOre.Text = Querys("Select totore from [Lezioni] where id = " + Session["idlez"]);
+            txtDescrizione.Text = Querys("Select descrizione from [Lezioni] where id = " + Session["idlez"]);
+            cmb.SetValue(Querys("Select modalità from [Lezioni] where id = " + Session["idlez"]));
+            firstLoad = false;
+        }
+        
     }
 
     protected void Salva(object sender, DirectEventArgs e)
