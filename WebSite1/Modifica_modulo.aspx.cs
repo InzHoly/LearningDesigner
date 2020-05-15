@@ -29,8 +29,8 @@ public partial class Inserimento_modulo : System.Web.UI.Page
     public int Aggiornamento(String n, String p,String c, String d, String anno, String corso, String classe, String tag, int stato, int user)
     {
         SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\lddb.mdf;Integrated Security=True");
-        SqlCommand command = new SqlCommand("update [Moduli] set nome = @nome, prerequisiti = @prerequisiti, competenze = @comp, descrizione = @desc, corso = @corso, anno_corso = @anno, tag = @tag, idUtente = @user, classe = @classe, pubblica = @stato where id =" + (int)Session["modid"], connection);
-        command.Parameters.AddWithValue("@nome", n);
+        SqlCommand command = new SqlCommand("update [Moduli] set nome = 'prova', prerequisiti ='prova', competenze = 'prova', descrizione = 'prova', corso = 'prova', anno_corso = 'prova', tag = 'prova', idUtente = 2, classe = 'prova', pubblica = 1 where id =19", connection);
+        /*command.Parameters.AddWithValue("@nome", n);
         command.Parameters.AddWithValue("@prerequisiti", p);
         command.Parameters.AddWithValue("@comp", c);
         command.Parameters.AddWithValue("@desc", d);
@@ -39,7 +39,7 @@ public partial class Inserimento_modulo : System.Web.UI.Page
         command.Parameters.AddWithValue("@tag", tag);
         command.Parameters.AddWithValue("@user", user);
         command.Parameters.AddWithValue("@classe", classe);
-        command.Parameters.AddWithValue("@stato", stato);
+        command.Parameters.AddWithValue("@stato", stato);*/
         connection.Open();
         int res = command.ExecuteNonQuery();
         connection.Close();

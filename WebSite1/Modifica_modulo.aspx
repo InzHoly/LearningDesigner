@@ -52,9 +52,9 @@
             stato = 0;
         }
         int u=int.Parse(Session["login"].ToString());
-        //X.Msg.Alert("Test",nome + " - " + prerequisiti + " - " + competenze + " - " + anno + " - " + corso + " - " + classe + " - " + tag + " - " + descrizione + " - " + stato + " - " + u).Show();
+        X.Msg.Alert("Test",nome + " - " + prerequisiti + " - " + competenze + " - " + anno + " - " + corso + " - " + classe + " - " + tag + " - " + descrizione + " - " + stato + " - " + u).Show();
         int ris = Aggiornamento(nome, prerequisiti, competenze, anno, corso, classe, tag, descrizione, stato, u);
-        Response.Redirect("Moduli-dopologin.aspx");
+        //Response.Redirect("Moduli-dopologin.aspx");
     }
 
 </script>
