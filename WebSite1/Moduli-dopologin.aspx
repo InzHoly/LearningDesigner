@@ -159,18 +159,16 @@
                 </ColumnModel>
             </ext:GridPanel>
 
-            <ext:ButtonGroup runat="server">
+            
+            <ext:ButtonGroup runat="server" Width="320">  
                 <Buttons>
-                    <ext:Button runat="server" Text="Aggiungi">
+                    <ext:Button runat="server" Text="Aggiungi Modulo">
                         <DirectEvents>
                             <Click OnEvent="AggiungiModulo"></Click>
                         </DirectEvents>
                     </ext:Button>
-                </Buttons>
-            </ext:ButtonGroup>
 
-             
-        <ext:Button
+                    <ext:Button
             ID="Button1"
             runat="server"
             Text="Cambia la tua password"
@@ -183,6 +181,11 @@
                     </Click>
             </DirectEvents>
         </ext:Button>
+                    </Buttons>
+             </ext:ButtonGroup>     
+
+             
+        
 
           </Items>
 

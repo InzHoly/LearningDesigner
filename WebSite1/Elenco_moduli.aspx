@@ -17,36 +17,7 @@
         Session["modid"] = int.Parse(Request.QueryString["id"]);
         Session["firstLoad"] = true;
 
-        Attivita at1 = new Attivita();
-        at1.setDescrizione("cartina europa nel 1939");
-        at1.setDurata(3);
-        at1.setTipo(2);
-
-        Attivita at2 = new Attivita();
-        at2.setDescrizione("Ricerca sulle strategie di guerra tedesche");
-        at2.setDurata(5);
-        at2.setTipo(1);
-
-        Attivita at3 = new Attivita();
-        at3.setDescrizione("Discussione sulla non belligeranza di Mussolini");
-        at3.setDurata(4);
-        at3.setTipo(3);
-
-        Attivita at4 = new Attivita();
-        at4.setDescrizione("Lettura di un documento sulle umilianti condizioni di resa della Francia");
-        at4.setDurata(1);
-        at4.setTipo(4);
-
-
-        att.setNome("1939, l'inizio");
-        att.setDescrizione("Dopo che la Germania invase la Polonia, Francia e Gran Bretagna dichiararono guerra a Hitler");
-        att.setTotore(3);
-        att.setModalita(0);
-
-        att.addAttivita(at1);
-        att.addAttivita(at2);
-        att.addAttivita(at3);
-        att.addAttivita(at4);
+        
         if(Session["lastlez"] == null)
             Session["lastlez"] = 5;
         int i = (int)Session["lastlez"]-4;
@@ -149,6 +120,7 @@
         String mostraidlez = "" + idlez;
         astro = idlez;
         Session["idlez"] = ""+idlez;
+        
         X.Msg.Alert(mostraidlez, mostraidlez).Show();
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
@@ -163,7 +135,8 @@
             String txt = "";
             String tipi = "";
             String nom = "a";
-            String idsatt = Query("SELECT id FROM attività WHERE lezione = " + Session[idlez]);
+            String idsatt = Query("SELECT id FROM attività WHERE lezione = " + Session["idlez"]);
+            X.Msg.Alert(idsatt, "id lezione:" + Session[idlez] +", "+idsatt ).Show();
             String[] ids = idsatt.Split(' ');
             int i = 1;
             do
@@ -176,7 +149,7 @@
             int index = int.Parse(txt);
 
             Descrizione.Text = Query("SELECT descrizione FROM attività WHERE id = " + ids[index]);
-            OreAttivita.Text = Query("SELECT durata FROM attività WHERE id = " + ids[index]);
+            OreAttivita.Text = "Durata: "+Query("SELECT durata FROM attività WHERE id = " + ids[index])+"h";
             int tipo = int.Parse(Query("SELECT tipo FROM attività WHERE id = " + ids[index]));
             switch (tipo)
             {
@@ -189,7 +162,7 @@
             }
             Tipo.Text = "Tipo: " + tipi;
         }catch (Exception exception) {X.Msg.Alert("Attenzione", "Questa attività non è ancora stata creata").Show(); };
-        //X.Msg.Alert(idsatt, idsatt).Show();
+        
 
         /*
         
@@ -336,7 +309,7 @@
     
    
 
-    <ext:Window runat="server"  Cls="background-color: red;" ID ="attivita" Width="500" Height="200" Title="Attività" Closable="false" PageY="500" PageX="550" Draggable="false" Resizable="false">
+    <ext:Window runat="server"  Cls="background-color: red;" ID ="attivita" Width="600" Height="250" Title="Attività" Closable="false" PageY="500" PageX="550" Draggable="false" Resizable="false">
 
         <Bin>
             <ext:InfoPanelQueue
