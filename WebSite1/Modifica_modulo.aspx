@@ -2,11 +2,11 @@
 
 <script runat="server">
 
-    Boolean firstLoad = true;
+    
 
     protected void Page_Load(object sender, EventArgs p)
     {
-        if (firstLoad)
+        if ((Boolean)Session["firstload"])
         {
             int modid = (int)Session["modid"];
             txtNome.Text = Querys("Select nome from [Moduli] where id = " + Session["modid"]);
@@ -27,7 +27,7 @@
                 pubblica.Pressed = false;
                 privata.Pressed = true;
             }
-            firstLoad = false;
+            Session["firstload"] = false;
         }
         
     }
@@ -52,9 +52,9 @@
             stato = 0;
         }
         int u=int.Parse(Session["login"].ToString());
-        X.Msg.Alert("Test",nome + " - " + prerequisiti + " - " + competenze + " - " + anno + " - " + corso + " - " + classe + " - " + tag + " - " + descrizione + " - " + stato + " - " + u).Show();
+        //X.Msg.Alert("Test",nome + " - " + prerequisiti + " - " + competenze + " - " + anno + " - " + corso + " - " + classe + " - " + tag + " - " + descrizione + " - " + stato + " - " + u).Show();
         int ris = Aggiornamento(nome, prerequisiti, competenze, anno, corso, classe, tag, descrizione, stato, u);
-        //Response.Redirect("Moduli-dopologin.aspx");
+        Response.Redirect("Moduli-dopologin.aspx");
     }
 
 </script>
