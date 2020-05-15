@@ -4,17 +4,17 @@
 
 <script runat="server">
 
-        Modulo d;
-        Modulo s;
-        Lezione att= new Lezione();
-        int astro;
-        int idlez;
-        int id;
-        int nlezioni;
-        protected void Page_Load(object sender, EventArgs p)
-        {
+    Modulo d;
+    Modulo s;
+    Lezione att= new Lezione();
+    int astro;
+    int idlez;
+    int id;
+    int nlezioni;
+    protected void Page_Load(object sender, EventArgs p)
+    {
 
-            Session["modid"] = int.Parse(Request.QueryString["id"]);
+        Session["modid"] = int.Parse(Request.QueryString["id"]);
 
         Attivita at1 = new Attivita();
         at1.setDescrizione("cartina europa nel 1939");
@@ -73,9 +73,11 @@
         Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = "+id);
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = "+id);
 
+        try {
+            nlezioni = int.Parse(Query("SELECT count(*) FROM [Lezioni] group by Modulo having Modulo = " + id + ";"));
+        }catch (Exception e) {};
 
-        nlezioni = int.Parse(Query("SELECT count(*) FROM [Lezioni] group by Modulo having Modulo = " + id + ";"));
-        
+
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
