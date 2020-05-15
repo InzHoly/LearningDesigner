@@ -15,6 +15,7 @@
     {
 
         Session["modid"] = int.Parse(Request.QueryString["id"]);
+        Session["firstLoad"] = true;
 
         Attivita at1 = new Attivita();
         at1.setDescrizione("cartina europa nel 1939");
