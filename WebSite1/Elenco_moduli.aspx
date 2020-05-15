@@ -149,7 +149,7 @@
         String mostraidlez = "" + idlez;
         astro = idlez;
         Session["idlez"] = ""+idlez;
-        //X.Msg.Alert(mostraidlez, mostraidlez).Show();
+        X.Msg.Alert(mostraidlez, mostraidlez).Show();
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -158,18 +158,41 @@
 
     protected void mostraAttivita(object sender, DirectEventArgs e)
     {
-        String tipi="";
-        String txt = "";
-        String nom = "a";
-        int i=1;
-        do
+        try
         {
-            if(e.ExtraParams.GetParameter(nom+i)!=null)
-                txt= e.ExtraParams.GetParameter(nom+i).Value;
-            i++;
-        } while (txt == "");
+            String txt = "";
+            String tipi = "";
+            String nom = "a";
+            String idsatt = Query("SELECT id FROM attività WHERE lezione = " + Session[idlez]);
+            String[] ids = idsatt.Split(' ');
+            int i = 1;
+            do
+            {
+                if (e.ExtraParams.GetParameter(nom + i) != null)
+                    txt = e.ExtraParams.GetParameter(nom + i).Value;
+                i++;
+            } while (txt == "");
 
-        int index = int.Parse(txt);
+            int index = int.Parse(txt);
+
+            Descrizione.Text = Query("SELECT descrizione FROM attività WHERE id = " + ids[index]);
+            OreAttivita.Text = Query("SELECT durata FROM attività WHERE id = " + ids[index]);
+            int tipo = int.Parse(Query("SELECT tipo FROM attività WHERE id = " + ids[index]));
+            switch (tipo)
+            {
+                case 0: tipi = "read, watch & listen"; break;
+                case 1: tipi = "collaborate"; break;
+                case 2: tipi = "discuss"; break;
+                case 3: tipi = "investigate"; break;
+                case 4: tipi = "practice"; break;
+                case 5: tipi = "produce"; break;
+            }
+            Tipo.Text = "Tipo: " + tipi;
+        }catch (Exception exception) {X.Msg.Alert("Attenzione", "Questa attività non è ancora stata creata").Show(); };
+        //X.Msg.Alert(idsatt, idsatt).Show();
+
+        /*
+        
 
         Attivita atti = att.GetAttivita(index);
         Descrizione.Text = atti.getDescrizione();
@@ -184,6 +207,7 @@
             case 5:tipi = "produce"; break;
         }
         Tipo.Text = "Tipo: " + tipi;
+        */
     }
 
 
@@ -340,6 +364,7 @@
                     <Items>
                         <ext:MenuItem
                             runat="server"
+                            ID ="att1"
                             Text="Attività 1">
                             <DirectEvents>
                                 <Click OnEvent="mostraAttivita" > <ExtraParams><ext:Parameter Name="a1" Value="0" Mode="Value" /></ExtraParams></Click>
@@ -347,21 +372,24 @@
                             </ext:MenuItem>
                         <ext:MenuItem
                             runat="server"
-                            Text="Attività 2">
+                            Text="Attività 2"
+                            ID ="att2">
                             <DirectEvents>
                                 <Click OnEvent="mostraAttivita" > <ExtraParams><ext:Parameter Name="a2" Value="1" Mode="Value" /></ExtraParams></Click>
                             </DirectEvents>
                             </ext:MenuItem>
                         <ext:MenuItem
                             runat="server"
-                            Text="Attività 3" >
+                            Text="Attività 3" 
+                            ID ="att3">
                             <DirectEvents>
                                 <Click OnEvent="mostraAttivita" > <ExtraParams><ext:Parameter Name="a3" Value="2" Mode="Value" /></ExtraParams></Click>
                             </DirectEvents>
                             </ext:MenuItem>
                         <ext:MenuItem
                             runat="server"
-                            Text="Attività 4" >
+                            Text="Attività 4"
+                            ID ="att4">
                             <DirectEvents>
                                 <Click OnEvent="mostraAttivita" > <ExtraParams><ext:Parameter Name="a4" Value="3" Mode="Value" /></ExtraParams></Click>
                             </DirectEvents>
