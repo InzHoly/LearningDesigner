@@ -2,17 +2,15 @@
 
 <script runat="server">
 
-    Boolean firstLoad = true;
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (firstLoad)
+        if ((Boolean)Session["firstload"])
         {
             txtNome.Text = Querys("Select nome from [Lezioni] where id = " + Session["idlez"]);
             txtOre.Text = Querys("Select totore from [Lezioni] where id = " + Session["idlez"]);
             txtDescrizione.Text = Querys("Select descrizione from [Lezioni] where id = " + Session["idlez"]);
             cmb.SetValue(Querys("Select modalità from [Lezioni] where id = " + Session["idlez"]));
-            firstLoad = false;
+            Session["firstload"] = false;
         }
         
     }
