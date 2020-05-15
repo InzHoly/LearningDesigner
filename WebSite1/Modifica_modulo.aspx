@@ -17,15 +17,13 @@
             txtClasse.Text = Querys("Select classe from [Moduli] where id = " + Session["modid"]);
             txtTag.Text = Querys("Select tag from [Moduli] where id = " + Session["modid"]);
             txtDescrizione.Text = Querys("Select descrizione from [Moduli] where id = " + Session["modid"]);
-            if (Querys("Select pubblica from [Moduli] where id = " + Session["modid"]).Equals(""+1))
+            if (int.Parse(Querys("Select pubblica from [Moduli] where id = " + Session["modid"]))==1)
             {
-                pubblica.Pressed = true;
-                privata.Pressed = false;
+                cmb.Value = 1;
             }
             else
             {
-                pubblica.Pressed = false;
-                privata.Pressed = true;
+                cmb.Value = 0;
             }
             Session["firstload"] = false;
         }
@@ -42,8 +40,8 @@
         String corso = txtCorso.Text;
         String classe = txtClasse.Text;
         String tag = txtTag.Text;
-        String descrizione = txtDescrizione.Text;
-        if(pubblica.Pressed == true)
+        String descrizione = txtDescrizione.Text;stato = 1;
+        if((cmb.Value+"").Equals("1"))
         {
             stato = 1;
         }
@@ -52,8 +50,8 @@
             stato = 0;
         }
         int u=int.Parse(Session["login"].ToString());
-        //X.Msg.Alert("Test",nome + " - " + prerequisiti + " - " + competenze + " - " + anno + " - " + corso + " - " + classe + " - " + tag + " - " + descrizione + " - " + stato + " - " + u).Show();
-        int ris = Aggiornamento(nome, prerequisiti, competenze, anno, corso, classe, tag, descrizione, stato, u);
+        //X.Msg.Alert("Test",nome + " - " + prerequisiti + " - " + competenze + " - " + anno + " - " + corso + " - " + classe + " - " + tag + " - " + descrizione + " - " + stato + " - " + u + "-" + cmb.Value).Show();
+        int ris = Aggiornamento(nome, prerequisiti,descrizione, competenze, anno, corso, classe, tag, stato);
         Response.Redirect("Moduli-dopologin.aspx");
     }
 
@@ -119,13 +117,12 @@
                                 <ext:TextField runat="server" FieldLabel="Competenze" ID="txtCompetenze" AnchorHorizontal="92%" />
                                 <ext:TextField runat="server" FieldLabel="Corso" ID="txtCorso" AnchorHorizontal="92%" />
                                 
-                                <ext:SegmentedButton runat="server" ID="status">
-                                        <Items>
-                                            <ext:Button runat="server" Text="Pubblica" ID="pubblica" />
-                                            <ext:Button runat="server" Text="Privata" Pressed="true" ID="privata" />
-                                            
-                                        </Items>
-                                </ext:SegmentedButton>
+                                <ext:ComboBox Editable="false" runat="server" ID="cmb" FieldLabel="Pubblica :">
+                                    <Items>
+                                        <ext:ListItem Text="No" Value="0"  />
+                                        <ext:ListItem Text="Sì" Value="1" />
+                                    </Items>
+                                </ext:ComboBox>
                              </Items>
                         </ext:Panel>
                         <ext:Panel runat="server" Border="false" Layout="Form" ColumnWidth=".5" LabelAlign="Top">
