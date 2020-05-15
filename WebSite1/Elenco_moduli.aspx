@@ -73,10 +73,14 @@
         Modulo_Prerequisiti.Text = Query("SELECT prerequisiti FROM Moduli WHERE Id = "+id);
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = "+id);
 
-        try {
+        try
+        {
             nlezioni = int.Parse(Query("SELECT count(*) FROM [Lezioni] group by Modulo having Modulo = " + id + ";"));
-        }catch (Exception e) {};
+        }
+        catch(Exception e)
+        {
 
+        }
 
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
