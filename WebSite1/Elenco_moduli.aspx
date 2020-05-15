@@ -121,7 +121,7 @@
 
         int index = int.Parse(txt)+1;
 
-        Lezione lez = s.getLezione(index-1);
+        //Lezione lez = s.getLezione(index-1);
         nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index);
         mods.Hidden = false;
         cmb.Hidden = false;
@@ -134,7 +134,7 @@
             case 2:cmb.SetValue("Laboratorio");break;
         }
         cmb.Hidden = false;
-        att = lez;
+        //att = lez;
         idlez = int.Parse(Query("SELECT id FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index));
         String mostraidlez = "" + idlez;
         astro = idlez;
