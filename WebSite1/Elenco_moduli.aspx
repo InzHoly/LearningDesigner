@@ -121,7 +121,7 @@
         astro = idlez;
         Session["idlez"] = ""+idlez;
 
-        X.Msg.Alert(mostraidlez, mostraidlez).Show();
+        //X.Msg.Alert(mostraidlez, mostraidlez).Show();
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -136,7 +136,7 @@
             String tipi = "";
             String nom = "a";
             String idsatt = Query("SELECT id FROM attività WHERE lezione = " + Session["idlez"]);
-            X.Msg.Alert(idsatt, "id lezione:" + Session["idlez"] +", "+idsatt ).Show();
+            //X.Msg.Alert(idsatt, "id lezione:" + Session["idlez"] +", "+idsatt ).Show();
             String[] ids = idsatt.Split(' ');
             int i = 1;
             do
