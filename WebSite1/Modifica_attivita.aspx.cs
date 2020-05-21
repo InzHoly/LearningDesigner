@@ -11,17 +11,18 @@ public partial class Inserimento_attivita : System.Web.UI.Page
 {
     
 
-    public String Inserimento(String desc, int mod, int durata, int lezione)
+    public String Aggiornamento(int id, String desc, int mod, int durata, int lezione)
     {
 
         String risposta = "";
         SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\lddb.mdf;Integrated Security=True");
-        SqlCommand command = new SqlCommand("INSERT INTO attività (descrizione, tipo, durata, lezione) VALUES (@desc,@mod,@durata,@lezione);", connection);
+        SqlCommand command = new SqlCommand("update attività set descrizione = @desc, tipo = @mod, durata = @durata, lezione = @lezione where id = @id;", connection);
         command.Parameters.AddWithValue("@durata", durata);
         command.Parameters.AddWithValue("@desc", desc);
         command.Parameters.AddWithValue("@lezione", lezione);
         command.Parameters.AddWithValue("@mod", mod);
-        
+        command.Parameters.AddWithValue("@id", id);
+
         connection.Open();
         SqlDataReader reader = command.ExecuteReader();
         while (reader.Read())

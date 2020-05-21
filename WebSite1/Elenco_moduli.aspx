@@ -17,7 +17,7 @@
         Session["modid"] = int.Parse(Request.QueryString["id"]);
         Session["firstLoad"] = true;
 
-        
+
         if(Session["lastlez"] == null)
             Session["lastlez"] = 5;
         int i = (int)Session["lastlez"]-4;
@@ -120,7 +120,7 @@
         String mostraidlez = "" + idlez;
         astro = idlez;
         Session["idlez"] = ""+idlez;
-        
+
         X.Msg.Alert(mostraidlez, mostraidlez).Show();
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
@@ -136,7 +136,7 @@
             String tipi = "";
             String nom = "a";
             String idsatt = Query("SELECT id FROM attività WHERE lezione = " + Session["idlez"]);
-            X.Msg.Alert(idsatt, "id lezione:" + Session[idlez] +", "+idsatt ).Show();
+            X.Msg.Alert(idsatt, "id lezione:" + Session["idlez"] +", "+idsatt ).Show();
             String[] ids = idsatt.Split(' ');
             int i = 1;
             do
@@ -147,7 +147,7 @@
             } while (txt == "");
 
             int index = int.Parse(txt);
-
+            Session["idAtt"] = ids[index];
             Descrizione.Text = Query("SELECT descrizione FROM attività WHERE id = " + ids[index]);
             OreAttivita.Text = "Durata: "+Query("SELECT durata FROM attività WHERE id = " + ids[index])+"h";
             int tipo = int.Parse(Query("SELECT tipo FROM attività WHERE id = " + ids[index]));
@@ -162,7 +162,7 @@
             }
             Tipo.Text = "Tipo: " + tipi;
         }catch (Exception exception) {X.Msg.Alert("Attenzione", "Questa attività non è ancora stata creata").Show(); };
-        
+
 
         /*
         
@@ -192,9 +192,10 @@
     }
     protected void ModificaAtt(object sender, DirectEventArgs e)//wip
     {
-        //String iddellAtt = (String)Session["idAtt"];
-        //X.Msg.Alert("Id da passare",""+iddellalez).Show();
-        //Response.Redirect("Inserimento_attivita.aspx?Lezione=" +iddellalez );
+        String iddellAtt = (String)Session["idAtt"];
+        String iddellalez = (String)Session["idlez"];
+        //X.Msg.Alert("Id da passare",""+iddellalez+" e "+iddellAtt).Show();
+        Response.Redirect("Modifica_attivita.aspx?Lezione=" +iddellalez+ "&Attivita=" +iddellAtt );
     }
 </script>
 

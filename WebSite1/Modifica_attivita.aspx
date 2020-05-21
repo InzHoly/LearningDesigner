@@ -1,56 +1,43 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Modifica_attività.aspx.cs" Inherits="Inserimento_attivita" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Modifica_attivita.aspx.cs" Inherits="Inserimento_attivita" %>
 
 <script runat="server">
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
         if (Request.Params["Lezione"] != null)
         {
-            int id = int.Parse(Request.Params["Lezione"]);
-            Lez.Text = Querys("SELECT nome FROM [Lezioni] WHERE id =" + id);
-        }    
+            if ((Boolean)Session["firstload"])
+            {
+                int id = int.Parse(Request.Params["Lezione"]);
+                int idatt = int.Parse(Request.Params["Attivita"]);
+                Lez.Text = Querys("SELECT nome FROM [Lezioni] WHERE id =" + id);
+                txtDurata.Text = Querys("SELECT durata FROM [attività] WHERE id =" + idatt);
+                txtDescrizione.Text = Querys("SELECT descrizione FROM [attività] WHERE id =" + idatt);
+                cmb.SetValue(Querys("SELECT tipo FROM [attività] WHERE id =" + idatt));
+            }
+        }
         else
         {
             Response.Redirect("Moduli-dopologin.aspx");
             return;
         }
-        
+        Session["firstload"] = false;
     }
 
-    protected void inserisci(object sender, DirectEventArgs e)
+    protected void Salva(object sender, DirectEventArgs e)
     {
-        int lezione;
-        if(Request.Params["Lezione"]!=null)
-            lezione = int.Parse(Request.Params["Lezione"]);
-        else
-        {
-            Response.Redirect("Moduli-dopologin.aspx");
-            return;
-        }
-        
-
-
+        int lezione = int.Parse((String)Session["idlez"]);
+        int idatt = int.Parse((String)Session["idAtt"]);
 
         int durata = int.Parse(txtDurata.Text);
 
-        
-        
         String descrizione = txtDescrizione.Text;
         int mod =int.Parse(cmb.SelectedItem.Value);
 
-
-        String ris = Inserimento(descrizione, mod, durata, lezione);
+        String ris = Aggiornamento(idatt, descrizione, mod, durata, lezione);
         Response.Redirect("Moduli-dopologin.aspx");
         return;
-
-
-
-
-        //values = "'" + nome + "','" + prerequisiti + "','" + competenze + "','" + descrizione + "','" + corso + "','" + anno + "','" + tag + "','" + classe + "','" + stato + "','" + u + "'";
-
-
-        //String ris = Querys("INSERT INTO Moduli (nome,prerequisiti,competenze,descrizione,corso,anno_corso,tag,classe,pubblica,idUtente) VALUES ("+values+");");
     }
 
 
@@ -140,11 +127,11 @@
                 <ext:Button
                     ID="Button1"
                     runat="server"
-                    Text="Inserisci"
+                    Text="Salva"
                     Disabled="true"
                     FormBind="true">
                     <DirectEvents>
-                        <Click OnEvent="inserisci"></Click>
+                        <Click OnEvent="Salva"></Click>
                     </DirectEvents>
                     
                 </ext:Button>
