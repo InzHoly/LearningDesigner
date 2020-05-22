@@ -28,24 +28,15 @@
             Response.Redirect("Moduli-dopologin.aspx");
             return;
         }
-        
 
-
-
-        int durata = int.Parse(txtDurata.Text);
-
-        
+        int durata = int.Parse(txtDurata.Text);        
         
         String descrizione = txtDescrizione.Text;
         int mod =int.Parse(cmb.SelectedItem.Value);
 
-
         String ris = Inserimento(descrizione, mod, durata, lezione);
         Response.Redirect("Moduli-dopologin.aspx");
         return;
-
-
-
 
         //values = "'" + nome + "','" + prerequisiti + "','" + competenze + "','" + descrizione + "','" + corso + "','" + anno + "','" + tag + "','" + classe + "','" + stato + "','" + u + "'";
 
