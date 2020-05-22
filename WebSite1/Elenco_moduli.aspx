@@ -17,7 +17,7 @@
         Session["modid"] = int.Parse(Request.QueryString["id"]);
         Session["firstLoad"] = true;
 
-        
+
         if(Session["lastlez"] == null)
             Session["lastlez"] = 5;
         int i = (int)Session["lastlez"]-4;
@@ -88,40 +88,45 @@
 
     protected void bottone(object sender, DirectEventArgs e)
     {
-
-        String txt = "";
-        String nom = "n";
-        int i = 1;
-        do
+        try
         {
+            String txt = "";
+            String nom = "n";
+            int i = 1;
+            do
+            {
 
-            if (e.ExtraParams.GetParameter(nom + i) != null)
-                txt = e.ExtraParams.GetParameter(nom + i).Value;
-            i++;
-        } while (txt == "");
+                if (e.ExtraParams.GetParameter(nom + i) != null)
+                    txt = e.ExtraParams.GetParameter(nom + i).Value;
+                i++;
+            } while (txt == "");
 
-        int index = int.Parse(txt)+1+(int)Session["lastlez"]-5;
+            int index = int.Parse(txt) + 1 + (int)Session["lastlez"] - 5;
 
-        //Lezione lez = s.getLezione(index-1);
-        nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index);
-        mods.Hidden = false;
-        cmb.Hidden = false;
-        descLez.Text = "Descrizione: " + Query("SELECT descrizione FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index);;
-        totdurata.Text ="Durata totale: "+ Query("SELECT totore FROM [Lezioni] WHERE Modulo="+id+"AND nlez="+index) + " ore";
-        switch ( int.Parse(Query("SELECT modalità FROM [Lezioni] WHERE Modulo="+id+" AND nlez="+index)))
-        {
-            case 0:cmb.SetValue("In classse");break;
-            case 1:cmb.SetValue("Uscita didattica");break;
-            case 2:cmb.SetValue("Laboratorio");break;
+            //Lezione lez = s.getLezione(index-1);
+            nomLez.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index);
+            mods.Hidden = false;
+            cmb.Hidden = false;
+            descLez.Text = "Descrizione: " + Query("SELECT descrizione FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index); ;
+            totdurata.Text = "Durata totale: " + Query("SELECT totore FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index) + " ore";
+            switch (int.Parse(Query("SELECT modalità FROM [Lezioni] WHERE Modulo=" + id + " AND nlez=" + index)))
+            {
+                case 0: cmb.SetValue("In classse"); break;
+                case 1: cmb.SetValue("Uscita didattica"); break;
+                case 2: cmb.SetValue("Laboratorio"); break;
+            }
+            cmb.Hidden = false;
+            //att = lez;
+            idlez = int.Parse(Query("SELECT id FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index));
+            String mostraidlez = "" + idlez;
+            astro = idlez;
+            Session["idlez"] = "" + idlez;
+            Descrizione.Text = "";
+            OreAttivita.Text = "";
+            Tipo.Text = "";
+
         }
-        cmb.Hidden = false;
-        //att = lez;
-        idlez = int.Parse(Query("SELECT id FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index));
-        String mostraidlez = "" + idlez;
-        astro = idlez;
-        Session["idlez"] = ""+idlez;
-        
-        X.Msg.Alert(mostraidlez, mostraidlez).Show();
+        catch (Exception exception) { };
         //e.ExtraParams[name: "n1"]
         //Session["UserName"] = username.Text;
         //provaout.Text = Session["UserName"] as string;
@@ -162,7 +167,7 @@
             }
             Tipo.Text = "Tipo: " + tipi;
         }catch (Exception exception) {X.Msg.Alert("Attenzione", "Questa attività non è ancora stata creata").Show(); };
-        
+
 
         /*
         

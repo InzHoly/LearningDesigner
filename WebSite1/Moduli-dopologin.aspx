@@ -12,7 +12,7 @@
             GridPanel1.Title = "Moduli di "+ Querys("SELECT nome FROM Utenti WHERE Id = " + u + ";");
 
 
-            String moduli = Query("SELECT Id FROM Moduli WHERE idUtente = " + u + ";");
+            String moduli = Query("SELECT Id FROM Moduli WHERE idUtente = " + u + "  OR pubblica = 1;");
             moduli= moduli.Remove(moduli.Length - 1);
             String[] lista = moduli.Split('/');
 
