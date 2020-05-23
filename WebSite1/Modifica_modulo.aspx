@@ -2,12 +2,12 @@
 
 <script runat="server">
 
-    
+
 
     protected void Page_Load(object sender, EventArgs p)
     {
         if ((Boolean)Session["firstload"])
-        {
+        {   //recupero le informazioni del modulo dal database e le inserisco nei campi della form
             int modid = (int)Session["modid"];
             txtNome.Text = Querys("Select nome from [Moduli] where id = " + Session["modid"]);
             txtPrerequisiti.Text = Querys("Select prerequisiti from [Moduli] where id = " + Session["modid"]);
@@ -27,11 +27,18 @@
             }
             Session["firstload"] = false;
         }
-        
+
+    }
+
+    protected void EliminaModulo(object sender, DirectEventArgs e)
+    {   //cancello il modulo
+        int modid = (int)Session["modid"];
+        String res = Querys("DELETE FROM Moduli WHERE id = " + modid + ";");
+        Response.Redirect("moduli-dopologin.aspx");
     }
 
     protected void salva(object sender, DirectEventArgs e)
-    {
+    {   //Raccolgo i dati dalla forme e salvo le modifiche fatte dall'utente
         int stato;
         String nome = txtNome.Text;
         String prerequisiti = txtPrerequisiti.Text;
@@ -164,7 +171,11 @@
                         </Click>
                     </DirectEvents>
                 </ext:Button>
-                
+                <ext:Button runat="server" ID="button2" Text="Elimina" Icon="Delete">
+                    <DirectEvents>
+                        <Click OnEvent="EliminaModulo"></Click>
+                    </DirectEvents>
+                </ext:Button>
             </Buttons>
 
         </ext:Panel>

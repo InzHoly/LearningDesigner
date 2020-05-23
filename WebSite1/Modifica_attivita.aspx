@@ -8,7 +8,7 @@
         if (Request.Params["Lezione"] != null)
         {
             if ((Boolean)Session["firstload"])
-            {
+            {   //recupero le informazioni del modulo dal database e le inserisco nei campi della form
                 int id = int.Parse(Request.Params["Lezione"]);
                 int idatt = int.Parse(Request.Params["Attivita"]);
                 Lez.Text = Querys("SELECT nome FROM [Lezioni] WHERE id =" + id);
@@ -25,8 +25,16 @@
         Session["firstload"] = false;
     }
 
+    protected void EliminaAttivita(object sender, DirectEventArgs e)
+    {   //cancello l'attività dal database
+        int id = int.Parse(Request.Params["Lezione"]);
+        String result = Querys("DELETE FROM attività WHERE id = " + id + ";");
+        Response.Redirect("Moduli-dopologin.aspx");
+        return;
+    }
+
     protected void Salva(object sender, DirectEventArgs e)
-    {
+    {   //Raccolgo i dati dalla form e salvo le modifiche fatte dall'utente
         int lezione = int.Parse((String)Session["idlez"]);
         int idatt = int.Parse((String)Session["idAtt"]);
 
@@ -135,6 +143,12 @@
                     </DirectEvents>
                     
                 </ext:Button>
+                <ext:Button runat="server" ID="button2" Text="Elimina" Icon="Delete">
+                    <DirectEvents>
+                        <Click OnEvent="EliminaAttivita"></Click>
+                    </DirectEvents>
+                </ext:Button>
+                
                 
             </Buttons>
 

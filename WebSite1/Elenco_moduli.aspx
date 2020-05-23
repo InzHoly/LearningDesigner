@@ -13,6 +13,11 @@
     int nlezioni;
     protected void Page_Load(object sender, EventArgs p)
     {
+        //controllo se l'utente non è loggato
+        if(Session["login"] == null)
+        {
+            Response.Redirect("Login.aspx");
+        }
 
         Session["modid"] = int.Parse(Request.QueryString["id"]);
         Session["firstLoad"] = true;
@@ -23,7 +28,7 @@
         int i = (int)Session["lastlez"]-4;
 
 
-
+        //Carico tutte le informazioni del modulo
         Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = 2");
         Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = 2");
         Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id = 2");
@@ -34,8 +39,10 @@
         Modulo_Nlezioni.Text = Query("SELECT totlez FROM Moduli WHERE Id = 2");
 
         id = 1;
-        if(Request.Params["id"]!=null)//perchè altrimenti cazzo crasha 
-            id = int.Parse(Request.Params["id"]);
+        //controllo i parametri della richiesta
+        if (Request.Params["id"] != null) { id = int.Parse(Request.Params["id"]);}
+        else { Response.Redirect("Moduli-dopologin.aspx");return; }
+
         Modulo_Nome.Text = Query("SELECT nome FROM Moduli WHERE Id = "+id);
         Modulo_Anno.Text= Query("SELECT anno_corso FROM Moduli WHERE Id = "+id);
         Modulo_Competenze.Text = Query("SELECT competenze FROM Moduli WHERE Id ="+id);
@@ -53,7 +60,7 @@
         {
 
         }
-
+        //carico la navigation bar delle lezioni
         lez1.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez2.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
         lez3.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
@@ -61,7 +68,7 @@
         lez5.Text = Query("SELECT nome FROM [Lezioni] WHERE Modulo="+id+" and nlez="+i+";");i++;
 
     }
-
+    //per spostarsi nella navigation bar
     protected void sposta(object sender, DirectEventArgs e)
     {
         String dir = e.ExtraParams.GetParameter("dir").Value;
@@ -85,7 +92,7 @@
         }
 
     }
-
+    //metodo per il caricamento dei dati di una lezione (quando schiacci su una lezione nella navigation bar)
     protected void bottone(object sender, DirectEventArgs e)
     {
         try
@@ -125,16 +132,16 @@
             OreAttivita.Text = "";
             Tipo.Text = "";
 
-        
 
-        
 
-        cmb.Hidden = false;
-        //att = lez;
-        idlez = int.Parse(Query("SELECT id FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index));
-        String mostraidlez = "" + idlez;
-        astro = idlez;
-        Session["idlez"] = ""+idlez;
+
+
+            cmb.Hidden = false;
+            //att = lez;
+            idlez = int.Parse(Query("SELECT id FROM [Lezioni] WHERE Modulo=" + id + "AND nlez=" + index));
+            String mostraidlez = "" + idlez;
+            astro = idlez;
+            Session["idlez"] = ""+idlez;
         }catch (Exception exception) { };
         //X.Msg.Alert(mostraidlez, mostraidlez).Show();
 
@@ -143,7 +150,7 @@
         //provaout.Text = Session["UserName"] as string;
     }
 
-
+    //quando schiacci su una delle attività mostra i dati relativi alla attività scelta
     protected void mostraAttivita(object sender, DirectEventArgs e)
     {
         try
@@ -169,12 +176,10 @@
             int tipo = int.Parse(Query("SELECT tipo FROM attività WHERE id = " + ids[index]));
             switch (tipo)
             {
-                case 0: tipi = "read, watch & listen"; break;
-                case 1: tipi = "collaborate"; break;
-                case 2: tipi = "discuss"; break;
-                case 3: tipi = "investigate"; break;
-                case 4: tipi = "practice"; break;
-                case 5: tipi = "produce"; break;
+                case 0: tipi = "Discussione"; break;
+                case 1: tipi = "Collaborzione"; break;
+                case 2: tipi = "Ricerca informazioni"; break;
+                case 3: tipi = "Fai pratica"; break;
             }
             Tipo.Text = "Tipo: " + tipi;
         }catch (Exception exception) {X.Msg.Alert("Attenzione", "Questa attività non è ancora stata creata").Show(); };
@@ -199,19 +204,26 @@
         */
     }
 
-
+    //reindirizza alla pagina per inserimento attività
     protected void AggiungiAtt(object sender, DirectEventArgs e)
     {
         String iddellalez = (String)Session["idlez"];
         //X.Msg.Alert("Id da passare",""+iddellalez).Show();
         Response.Redirect("Inserimento_attivita.aspx?Lezione=" +iddellalez );
     }
+    //reindirizza alla pagina per modifica attività
     protected void ModificaAtt(object sender, DirectEventArgs e)//wip
     {
         String iddellAtt = (String)Session["idAtt"];
         String iddellalez = (String)Session["idlez"];
         //X.Msg.Alert("Id da passare",""+iddellalez+" e "+iddellAtt).Show();
         Response.Redirect("Modifica_attivita.aspx?Lezione=" +iddellalez+ "&Attivita=" +iddellAtt );
+    }
+    //reindirizza alla home
+    protected void GoToHome(object sender, DirectEventArgs e)
+    {
+        Response.Redirect("Moduli-dopologin.aspx");
+        return;
     }
 </script>
 
@@ -221,7 +233,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link href="Stile.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 </head>
 
 <body>
@@ -321,7 +333,12 @@
         
         <div id="piechart" class="chart"></div>
     </div>
-
+    
+    <ext:Button runat="server" Text="Torna Alla home" Icon="ApplicationHome" X="400" >
+        <DirectEvents>
+            <Click OnEvent="GoToHome"></Click>
+        </DirectEvents>
+    </ext:Button>
 
     
    
@@ -531,7 +548,7 @@
             </tr>
             <tr>
                 <td class="description"><ext:Label runat="server" Hidden="true" Cls="description" Text="Modalità: " ID="mods" ></ext:Label>
-                        <ext:ComboBox runat="server" Hidden="true" ID="cmb">
+                        <ext:ComboBox runat="server" Hidden="true" ID="cmb" Editable="false">
                             <Items>
                                 <ext:ListItem Text="In classe" Value="CL" />
                                 <ext:ListItem Text="Uscita Didattica" Value="UD" />

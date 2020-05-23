@@ -9,7 +9,11 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["login"] != null)
+        {
+            Response.Redirect("Moduli-dopologin.aspx");
+            return;
+        }
     }
 
     public String Query(String sql)

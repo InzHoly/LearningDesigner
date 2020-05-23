@@ -1,32 +1,32 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
 
 <script runat="server">
-
+    //quando schiaccio il tasto login
     protected void Login(object sender, DirectEventArgs e)
     {
 
         String n = txtUsername.Text;
         String p = txtPassword.Text;
-        if(n=="" || p=="")
+        if(n=="" || p=="")//controllo che i campi non siano vuoti
             X.Msg.Alert("Errore", string.Format("Compila tutti i campi")).Show();
-        else{
-            if (Query("SELECT password FROM [Utenti] where nome ='" + n + "';").Equals(p))
-            {
-                Session.Add("login",Query("SELECT Id FROM [Utenti] where nome ='" + n + "';"));
+        else{//controllo se la password inserita è giusta
+            if (Query("SELECT password FROM [Utenti] where email ='" + n + "';").Equals(p))
+            {//inserisco l'id utente nella sessione
+                Session.Add("login",Query("SELECT Id FROM [Utenti] where email ='" + n + "';"));
                 Response.Redirect("Moduli-dopologin.aspx");
             }
             else
-            {
+            {//password errata
                 X.Msg.Alert("Errore", string.Format("Nome utente o password sbagliata")).Show();
             }
         }
     }
-
+    //reindirizzo alla pagina di recupero password
     protected void RPass(object sender, DirectEventArgs e)
     {
         Response.Redirect("RecuperaPassword.aspx");
     }
-
+    //reindirizzo alla pagina di registrazione
     protected void register(object sender, DirectEventArgs e)
     {
         Response.Redirect("registrazione.aspx");
@@ -69,11 +69,11 @@
                 <ext:TextField
                     ID="txtUsername"
                     runat="server"
-                    Name="username"
-                    FieldLabel="Username"
+                    Name="Mail"
+                    FieldLabel="Mail"
                     EmptyText="username"
                     AllowBlank="false"
-                    BlankText="Your username is required." />
+                    BlankText="Your mail is required." />
                 <ext:TextField
                     ID="txtPassword"
                     EmptyText="password"

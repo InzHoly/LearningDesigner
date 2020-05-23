@@ -6,7 +6,7 @@
 
 
     protected void inserisci(object sender, DirectEventArgs e)
-    {
+    {   //REcupero le informazioni dalla form e inserisco il nuovo modulo nel database
         int stato;
         String nome = txtNome.Text;
         String prerequisiti = txtPrerequisiti.Text;

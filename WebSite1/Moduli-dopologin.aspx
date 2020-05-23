@@ -3,7 +3,7 @@
 <script runat="server">
 
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {   //controllo se l'utente è loggato
         if(Session["login"] != null)
         {
             List<Modul> s = new List<Modul> { };
@@ -11,12 +11,12 @@
             String u=Session["login"].ToString();
             GridPanel1.Title = "Moduli di "+ Querys("SELECT nome FROM Utenti WHERE Id = " + u + ";");
 
-
+            //Recupero dal database tutti i moduli dell'utente e i moduli pubblici
             String moduli = Query("SELECT Id FROM Moduli WHERE idUtente = " + u + "  OR pubblica = 1;");
             moduli= moduli.Remove(moduli.Length - 1);
             String[] lista = moduli.Split('/');
 
-            // Part 3: loop over result array.
+            // salvo le informazioni in un array di oggetti Modul
             foreach (String word in lista)
             {
 
@@ -37,7 +37,7 @@
             }
 
 
-
+            //L'array di oggetti diventa la base di dati della tabella mostrata nella pagina
             this.Store1.DataSource = s;
 
             this.Store1.DataBind();
@@ -63,19 +63,18 @@
 
 
     protected void AggiungiModulo(object sender, EventArgs e)
-    {
+    {   //reindirizzo alla pagina di inserimento di un modulo
         Response.Redirect("Inserimento_modulo.aspx");
     }
 
     protected void cambioPassword(object sender, EventArgs e)
-    {
+    {   //reindirizzo alla pagina di cambio della password
         Response.Redirect("cambiopassword.aspx");
         return;
     }
 
-   
-    
 
+    //dichiaro l'oggetto Modul
     public class Modul
     {
         public Modul(String nome, String corso, String anno, String classe, String descrizione, int pubblica)
@@ -143,8 +142,8 @@
                 runat="server"
                 StoreID="Store1"
                 Title="Moduli di ...."
-                Width="600"
-                Height="350">
+                Width="900"
+                Height="500">
                 <ColumnModel runat="server">
                     <Columns>
                         <ext:Column runat="server" Text="Nome" DataIndex="Nome" Flex="1" >
@@ -154,24 +153,26 @@
                         <ext:Column runat="server" Text="Anno" Width="100" DataIndex="Anno"/>
                         <ext:Column runat="server" Text="Classe" Width="75" DataIndex="Classe"/>
                         <ext:Column runat="server" Text="Descrizione" Flex="1"  DataIndex="Descrizione"/>
-                        <ext:Column runat="server" Text="Pubblica" DataIndex="Pubblica"></ext:Column>
+                        <ext:Column runat="server" Text="Pubblica" DataIndex="Pubblica"></ext:Column>      
+                        
                     </Columns>
                 </ColumnModel>
             </ext:GridPanel>
 
             
-            <ext:ButtonGroup runat="server" Width="320">  
+            <ext:ButtonGroup runat="server" Width="280">  
                 <Buttons>
                     <ext:Button runat="server" Text="Aggiungi Modulo">
                         <DirectEvents>
                             <Click OnEvent="AggiungiModulo"></Click>
                         </DirectEvents>
                     </ext:Button>
+                    
 
                     <ext:Button
             ID="Button1"
             runat="server"
-            Text="Cambia la tua password"
+            Text="Cambia password"
             Icon="Accept"
             FormBind="true"
             >

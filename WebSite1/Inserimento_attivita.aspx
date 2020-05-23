@@ -4,7 +4,7 @@
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //controllo se l'id della lezione è presente 
         if (Request.Params["Lezione"] != null)
         {
             int id = int.Parse(Request.Params["Lezione"]);
@@ -19,7 +19,7 @@
     }
 
     protected void inserisci(object sender, DirectEventArgs e)
-    {
+    {// recupero i dati dalla form e inserisco la nuova attività nel database
         int lezione;
         if(Request.Params["Lezione"]!=null)
             lezione = int.Parse(Request.Params["Lezione"]);

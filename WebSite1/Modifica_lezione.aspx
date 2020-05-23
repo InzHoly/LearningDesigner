@@ -3,7 +3,7 @@
 <script runat="server">
 
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {   //recupero le informazioni della lezione dal database e le inserisco nei campi della form
         if ((Boolean)Session["firstload"])
         {
             txtNome.Text = Querys("Select nome from [Lezioni] where id = " + Session["idlez"]);
@@ -12,19 +12,28 @@
             cmb.SetValue(Querys("Select modalità from [Lezioni] where id = " + Session["idlez"]));
             Session["firstload"] = false;
         }
-        
+
+    }
+
+    protected void EliminaLezione(object sender, DirectEventArgs e)
+    {   //cancello la lezione dal db
+        int idlez= int.Parse((String)Session["idlez"]);
+        String result = Querys("DELETE FROM Lezioni WHERE id = " + idlez + ";");
+        Response.Redirect("Moduli-dopologin.aspx");
+        return;
     }
 
     protected void Salva(object sender, DirectEventArgs e)
     {
+        //Raccolgo i dati dalla forme e salvo le modifiche fatte dall'utente alla lezione
         int idlez = int.Parse((String)Session["idlez"]);
         int totore = int.Parse(txtOre.Text);
         String nome = txtNome.Text;
         String descrizione = txtDescrizione.Text;
         int mod =int.Parse(cmb.SelectedItem.Value);
         int ris = Aggiornamento(idlez, nome, descrizione, mod, totore);
-        X.Msg.Alert(""+ris, ris).Show();
-        //Response.Redirect("Moduli-dopologin.aspx");
+        //X.Msg.Alert(""+ris, ris).Show();
+        Response.Redirect("Moduli-dopologin.aspx");
     }
 </script>
 
@@ -116,6 +125,11 @@
                         <Click OnEvent="Salva"></Click>
                     </DirectEvents>
                     
+                </ext:Button>
+                <ext:Button runat="server" ID="button2" Icon="Delete" Text="Elimina">
+                    <DirectEvents>
+                        <Click OnEvent="EliminaLezione"></Click>
+                    </DirectEvents>
                 </ext:Button>
                 
             </Buttons>

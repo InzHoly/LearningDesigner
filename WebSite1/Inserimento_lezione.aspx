@@ -10,7 +10,7 @@
     }
 
     protected void inserisci(object sender, DirectEventArgs e)
-    {
+    {   //Recupero i dati dalla form e inserisco la nuova lezione nel database
         int modulo;
         if(Request.Params["modulo"]!=null)
             modulo = int.Parse(Request.Params["modulo"]);
