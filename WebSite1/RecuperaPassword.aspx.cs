@@ -15,26 +15,26 @@ public partial class _Default : System.Web.UI.Page
     }
 
     public void Reset(object sender, EventArgs e)
-    {
+    { 
         try
         {
             MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");//per le email gmail
             String from = "learner.designing@gmail.com";//email ad usare
             mail.From = new MailAddress(from);
             mail.To.Add(email.Text);
-            mail.Subject = "Recupero Password LearningDesigner";
+            mail.Subject = "Recupero Password LearningDesigner";//oggetto email
             String password = Query("select password from [Utenti] where email = '" + email.Text + "'");
-            if (password == "")
-                mail.Body = "E' stata inoltrata una richiesta di recupero password ma non sembra esserci nessun account LearningDesigner collegato ad essa.\nSe credi ci sia un errore contatta qualcuno per ricevere assistenza.\nGrazie.";
+            if (password == "")//controllo se effettivamente esiste un account associato alla mail inserita dall'utente
+                mail.Body = "E' stata inoltrata una richiesta di recupero password ma non sembra esserci nessun account LearningDesigner collegato a questa email.\nSe credi ci sia un errore contattaci per ricevere assistenza.\nPer creare un account vai sulla pagina di registrazione learningdesigner.ddns.net/registrazione.aspx.\nGrazie.";
             else
-                mail.Body = "La password associata a questo indirizzo email è : "+password;
+                mail.Body = "La password associata a questo indirizzo email è : "+password+"\nTi consigliamo di cambiarla. Per farlo effettua l'accesso al sito e clicca su cambia password";
 
             SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential(from, "eneamucino10");
+            SmtpServer.Credentials = new System.Net.NetworkCredential(from, "eneamucino10");//password della email
             SmtpServer.EnableSsl = true;
 
-            SmtpServer.Send(mail);
+            SmtpServer.Send(mail);//manda l'email
             Response.Redirect("Login.aspx");
             return;
         }

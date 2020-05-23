@@ -2,11 +2,13 @@
 
 <script runat="server">
     public void cambio(object sender, DirectEventArgs e)
-    {
+    {   //se i campi delle password non sono vuoit
         if(newpassword.Text!="" && newpassword2.Text!="" && oldpassword.Text!="")
+            //se le password nuove coincidono
             if (newpassword.Text.Equals(newpassword2.Text))
-            {
+            {   //se la password vecchia coincide con quella nel database
                 if(Query("select password from utenti where id = "+Session["login"]).Equals(oldpassword.Text)){
+                    //aggiorno la password nel database con quella nuova inserita
                     Query("update utenti set password = '" + newpassword.Text + "' where id = '" + Session["login"] + "' and password = '"+oldpassword.Text+"'");
                     Response.Redirect("moduli-dopologin.aspx");
                 }

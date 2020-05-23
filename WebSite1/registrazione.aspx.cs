@@ -13,7 +13,7 @@ public partial class _Default : System.Web.UI.Page
     }
 
     public void Registra(object sender, EventArgs e)
-    {
+    {   //inserisce nel database i dati immessi dall'utente (la validità dei dati viene controllata con javascript)
         Query("insert into Utenti (email, nome, password) values ('" +email.Text+"', '"+nome.Text+"', '"+password.Text+"' )");
         Response.Redirect("Login.aspx");
     }
